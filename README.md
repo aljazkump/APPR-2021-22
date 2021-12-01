@@ -14,15 +14,11 @@ sem si izbral:
   - `Delovna aktivnost`
   - `Drzava priseljevanja`
 
-</br>
-
 **SPOL**: moski in zenske </br>
 **STAROST** : otroci in mladostniki (0-18 let), mladi (18-30 let), zrela populacija (30-64 let), stari (64+) </br>
 **GEOGRAFKSE REGIJE** : 12 uradnih geografskih regij </br>
 **IZOBRAZBA** : osnovnosolska ali manj, srednjesolska, visjesolska in visokosolska </br>
 **DELOVNA AKTIVNOST** : Zaposleni in brezposelni </br>
-
-</br>
 
 Vsako spremenljivko bom graficno prikazal tako, da bojo cim bolj razvidni trendi ali
 vzorci, ki so se pojavljali skozi leta. Te bom tudi komentiral in obrazlozil, kaj je povzoricilo
