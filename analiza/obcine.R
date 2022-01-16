@@ -2,8 +2,8 @@ library(rgdal);
 library(tidyverse);
 library(maptools);
 
-obcine_odseljeni <- read.csv("podatki\\obcine.csv");
-obcine_prebivalstvo <- read.csv("podatki\\obcine_prebivalstvo.csv");
+obcine_odseljeni <- read.csv("podatki/obcine.csv");
+obcine_prebivalstvo <- read.csv("podatki/obcine_prebivalstvo.csv");
 
 a = as.integer(obcine_odseljeni[1:212,12]);
 b = as.integer(obcine_prebivalstvo[1:212, 22]);
