@@ -1,9 +1,9 @@
 library(tidyverse);
 library(reshape);
 
-Starost_Izobrazba = read.csv("Podatki\\Starost_Izobrazba_splosno.csv");
-Starost_spol = read.csv("Podatki\\starost_spol.csv");
-aktivnost = read.csv("Podatki\\aktivnost_splosno.csv");
+Starost_Izobrazba = read.csv("podatki\\Starost_Izobrazba_splosno.csv");
+Starost_spol = read.csv("podatki\\starost_spol.csv");
+aktivnost = read.csv("podatki\\aktivnost_splosno.csv");
 
 razvrstitev_po_izobrazbi_spolu_starosti = data.frame(
   
