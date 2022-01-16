@@ -2,6 +2,8 @@ library(rgdal);
 library(tidyverse);
 library(maptools);
 
+# setwb()
+
 obcine_odseljeni <- read.csv("podatki/obcine.csv");
 obcine_prebivalstvo <- read.csv("podatki/obcine_prebivalstvo.csv");
 
