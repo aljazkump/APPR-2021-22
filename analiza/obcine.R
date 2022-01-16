@@ -15,7 +15,7 @@ df = data.frame(
   delez = (delez + 1)**(1/4)
 );
 
-SIob <- readOGR("OB.shp", layer = "OB", encoding = "UTF-8");
+SIob <- readOGR("podatki\\OB.shp", layer = "OB", encoding = "UTF-8");
 
 SIob_fort <- SIob %>%
   fortify("region");
