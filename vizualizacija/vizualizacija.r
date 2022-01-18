@@ -25,7 +25,7 @@ temp = c(
 
 # IZSELJEVANJE MOSKEGA PREBIVALSTVA PO STAROSTI
 
-ggplot(razvrstitev_po_starosti_spolu) + 
+Moski_starost <- ggplot(DF_STAROST_SPOL) + 
   geom_bar(aes(leto, zreli_moski, fill = "zreli", group = 1), stat = "identity") +
   geom_bar(aes(leto, mladi_moski, fill = "mladi", group = 1), stat = "identity") +
   geom_bar(aes(leto, stari_moski, fill = "stari", group = 1), stat = "identity") +
@@ -33,9 +33,8 @@ ggplot(razvrstitev_po_starosti_spolu) +
        y = "STEVILO", 
        x = "LETO", 
        temp = "Legend") +
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) +
-  scale_y_continuous(breaks = seq(0, 6000, 500)) +
+  scale_x_continuous(breaks = seq(2011, 2021, 1)) +
+  scale_y_continuous(breaks = seq(0, 8000, 500)) +
   theme(panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(color = "black", linetype = "dotted"),
         legend.title = element_blank());
@@ -44,7 +43,7 @@ ggplot(razvrstitev_po_starosti_spolu) +
 
 # IZSELJEVANJA ZENSKEGA PREBIVALSTVA PO STAROSTI
 
-ggplot(razvrstitev_po_starosti_spolu) + 
+Zenske_starost <- ggplot(DF_STAROST_SPOL) + 
   geom_bar(aes(leto, mlade_zenske, fill = "mladi", group = 1), stat = "identity") +
   geom_bar(aes(leto, zrele_zenske, fill = "zreli", group = 1), stat = "identity") +
   geom_bar(aes(leto, stare_zenske, fill = "stari", group = 1), stat = "identity") +
@@ -52,8 +51,8 @@ ggplot(razvrstitev_po_starosti_spolu) +
        y = "STEVILO", 
        x = "LETO", 
        temp = "Legend") +
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) +
-  scale_y_continuous(breaks = seq(0, 3500, 500)) +
+  scale_x_continuous(breaks = seq(2011, 2021, 1)) +
+  scale_y_continuous(breaks = seq(0, 4000, 500)) +
   theme(panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(color = "black", linetype = "dotted"),
         legend.title = element_blank());
@@ -66,19 +65,17 @@ ggplot(razvrstitev_po_starosti_spolu) +
 # kot zrelih, saj je to zelo "negativen" trend.
  
 
-mladi = razvrstitev_po_starosti_spolu$mladi_moski +
-  razvrstitev_po_starosti_spolu$mlade_zenske;
-zreli = razvrstitev_po_starosti_spolu$zreli_moski +
-  razvrstitev_po_starosti_spolu$zrele_zenske;
-leta = 2011 : 2020;
+mladi = DF_STAROST_SPOL$mladi_moski + DF_STAROST_SPOL$mlade_zenske;
+zreli = DF_STAROST_SPOL$zreli_moski + DF_STAROST_SPOL$zrele_zenske;
+leta = 2011 : 2021;
 
 df1 <- data.frame(mladi, zreli, leta);
 df2 <- melt(df1, id.vars = "leta");
 
-ggplot(df2, aes(x=leta, y=value, fill=variable)) +
+Mladi_Zreli <- ggplot(df2, aes(x=leta, y=value, fill=variable)) +
   geom_bar(stat='identity', position='dodge') +
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) +
-  scale_y_continuous(breaks = seq(0, 7500, 500)) + 
+  scale_x_continuous(breaks = seq(2011, 2021, 1)) +
+  scale_y_continuous(breaks = seq(0, 10000, 500)) + 
   ggtitle("IZSELJEVANJE MLADEGA IN ZRELEGA PREBIVALSTVA") +
   labs(x = "Leta", y = "Stevilo") +
   theme(panel.background = element_rect(fill = "white"),
@@ -94,13 +91,13 @@ ggplot(df2, aes(x=leta, y=value, fill=variable)) +
 # odselitev in ali je med njima razlika, kateri prej, kateri kaseje.
 
 
-ggplot(razvrstitev_po_starosti_spolu) +
+Povprecje <- ggplot(DF_STAROST_SPOL) +
   geom_line(aes(leto, povprecna_starost_moskih, group = 1, color = "moski"), size = 1.5) +
   geom_point(aes(leto, povprecna_starost_moskih, group = 1, color = "moski"), size = 5, alpha = 0.5) +
   geom_line(aes(leto, povprecna_starost_zensk, group = 1, color = "zenske"), size = 1.5) +
   geom_point(aes(leto, povprecna_starost_zensk, group = 1, color = "zenske"), size = 5, alpha = 0.5) +
   labs(title = "POVPRECNA STAROST IZSELJEVANJA", x = "Leto", y = "Starost") + 
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
+  scale_x_continuous(breaks = seq(2011, 2021, 1)) + 
   scale_y_continuous(breaks = seq(30, 40, 1)) + 
   theme(panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(color = "black", linetype = "dotted"),
@@ -116,7 +113,7 @@ ggplot(razvrstitev_po_starosti_spolu) +
 
 # IZSELJEVANJE MLADEGA MOSKEGA PREBIVALSTVA
 
-ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
+Mladi_moski <- ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
   geom_line(aes(leto, mladi_moski_OS, group = 1, color = "Osnovna sola"), size = 1.5) +
   geom_point(aes(leto, mladi_moski_OS, group = 1, color = "Osnovna sola"), size = 5, alpha = 0.5) +
   geom_line(aes(leto, mladi_moski_SS, group = 1, color = "Srednja sola"), size = 1.5) +
@@ -138,7 +135,7 @@ ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
 
 # IZSELJEVANJE MLADEGA ZENSKEGA PREBIVALSTVA
 
-ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
+Mlade_zenske <- ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
   geom_line(aes(leto, mlade_zenske_OS, group = 1, color = "Osnovna sola"), size = 1.5) +
   geom_point(aes(leto, mlade_zenske_OS, group = 1, color = "Osnovna sola"), size = 5, alpha = 0.5) +
   geom_line(aes(leto, mlade_zenske_SS, group = 1, color = "Srednja sola"), size = 1.5) +
@@ -159,7 +156,7 @@ ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
 
 # IZSELJEVANJA ZRELEGA MOSKEGA PREBIVALSTVA
 
-ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
+Zreli_moski <- ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
   geom_line(aes(leto, zreli_moski_OS, group = 1, color = "Osnovna sola"), size = 1.5) +
   geom_point(aes(leto, zreli_moski_OS, group = 1, color = "Osnovna sola"), size = 5, alpha = 0.5) +
   geom_line(aes(leto, zreli_moski_SS, group = 1, color = "Srednja sola"), size = 1.5) +
@@ -180,7 +177,7 @@ ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
 
 # IZSELJEVANJA ZRELEGA ZENSKEGA PREBIVALSTVA
 
-ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
+Zrele_zenske <- ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
   geom_line(aes(leto, zrele_zenske_OS, group = 1, color = "Osnovna sola"), size = 1.5) +
   geom_point(aes(leto, zrele_zenske_OS, group = 1, color = "Osnovna sola"), size = 5, alpha = 0.5) +
   geom_line(aes(leto, zrele_zenske_SS, group = 1, color = "Srednja sola"), size = 1.5) +
@@ -206,7 +203,7 @@ ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
 
 # IZSELJEVANJA PREBIVALSTVA Z VISOKOSOLSKO IZOBRAZBO V  ZADNJEM DESETLETJU
 
-df_VS %>% pivot_longer(cols = names(.)) %>% 
+VS <- df_VS %>% pivot_longer(cols = names(.)) %>% 
   ggplot(aes(x = "", y = value, fill = name)) +
   geom_col(color = "black") +
   coord_polar("y", start = 0) +
@@ -227,7 +224,7 @@ df_VS %>% pivot_longer(cols = names(.)) %>%
 
 # IZSELJEVANJA PREBIVALSTVA Z SREDNJOSOLSKO IZOBRAZBO V ZADNJEM DESETLETJU
 
-df_SS %>% pivot_longer(cols = names(.)) %>% 
+SS <- df_SS %>% pivot_longer(cols = names(.)) %>% 
   ggplot(aes(x = "", y = value, fill = name)) +
   geom_col(color = "black") +
   coord_polar("y", start = 0) +
@@ -248,7 +245,7 @@ df_SS %>% pivot_longer(cols = names(.)) %>%
 
 # IZSELJEVANJA PREBIVALSTVA Z OSNOVNOSOLSKO IZOBRAZBO V DESETLETJU
 
-df_OS %>% pivot_longer(cols = names(.)) %>% 
+OS <- df_OS %>% pivot_longer(cols = names(.)) %>% 
   ggplot(aes(x = "", y = value, fill = name)) +
   geom_col(color = "black") +
   coord_polar("y", start = 0) +
@@ -311,7 +308,7 @@ plot2 <- ggplot(aktivnost) +
         legend.position = "bottom",
         legend.title = element_blank());
 
-grid.arrange(plot1, plot2,ncol = 2, nrow = 1);
+# ZN <- grid.arrange(plot1, plot2,ncol = 2, nrow = 1);
 
 
 # ---------------------------------------------------------------------------- #
@@ -327,7 +324,7 @@ mapdata <- left_join(map_data("world"), skupno_evropa, by="region");
 
 mapdata_temp = mapdata %>% filter(!is.na(mapdata$stevilo));
 
-ggplot(mapdata_temp, aes(x = long, y = lat, group = group)) +
+Evropa_map <- ggplot(mapdata_temp, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill = stevilo), color = "black", show.legend = FALSE) + 
   scale_fill_gradient(low = "yellow", high = "red") +
   theme(
@@ -353,7 +350,7 @@ ggplot(mapdata_temp, aes(x = long, y = lat, group = group)) +
 # Zelena <- mladi, Rdeca <- zreli, Modra <- stari
 
 
-plot1 <- ggplot(NEM) +
+plot3 <- ggplot(DF_NEM) +
   geom_line(aes(Leta, mladi), color = "red", size = 1.5) +
   geom_point(aes(Leta, mladi), color = "red", size = 3, alpha = 0.5) +
   geom_line(aes(Leta, zreli), color = "green", size = 1.5) +
@@ -368,7 +365,7 @@ plot1 <- ggplot(NEM) +
         axis.title.x = element_blank(),
         axis.title.y = element_blank());
 
-plot2 <- ggplot(CH) +
+plot4 <- ggplot(DF_CH) +
   geom_line(aes(Leta, mladi), color = "red", size = 1.5) +
   geom_point(aes(Leta, mladi), color = "red", size = 3, alpha = 0.5) +
   geom_line(aes(Leta, zreli), color = "green", size = 1.5) +
@@ -383,7 +380,7 @@ plot2 <- ggplot(CH) +
         axis.title.x = element_blank(),
         axis.title.y = element_blank());
 
-plot3 <- ggplot(UK) +
+plot5 <- ggplot(DF_UK) +
   geom_line(aes(Leta, mladi), color = "red", size = 1.5) +
   geom_point(aes(Leta, mladi), color = "red", size = 3, alpha = 0.5) +
   geom_line(aes(Leta, zreli), color = "green", size = 1.5) +
@@ -398,7 +395,7 @@ plot3 <- ggplot(UK) +
         axis.title.x = element_blank(),
         axis.title.y = element_blank());
 
-plot4 <- ggplot(ITA) +
+plot6 <- ggplot(DF_ITA) +
   geom_line(aes(Leta, mladi), color = "red", size = 1.5) +
   geom_point(aes(Leta, mladi), color = "red", size = 3, alpha = 0.5) +
   geom_line(aes(Leta, zreli), color = "green", size = 1.5) +
@@ -413,7 +410,7 @@ plot4 <- ggplot(ITA) +
         axis.title.x = element_blank(),
         axis.title.y = element_blank());
 
-plot5 <- ggplot(HRT) +
+plot7 <- ggplot(DF_HRT) +
   geom_line(aes(Leta, mladi), color = "red", size = 1.5) +
   geom_point(aes(Leta, mladi), color = "red", size = 3, alpha = 0.5) +
   geom_line(aes(Leta, zreli), color = "green", size = 1.5) +
@@ -428,7 +425,7 @@ plot5 <- ggplot(HRT) +
         axis.title.x = element_blank(),
         axis.title.y = element_blank());
 
-plot6 <- ggplot(AU) +
+plot8 <- ggplot(DF_AU) +
   geom_line(aes(Leta, mladi), color = "red", size = 1.5) +
   geom_point(aes(Leta, mladi), color = "red", size = 3, alpha = 0.5) +
   geom_line(aes(Leta, zreli), color = "green", size = 1.5) +
@@ -444,7 +441,7 @@ plot6 <- ggplot(AU) +
         axis.title.y = element_blank());
 
 
-grid.arrange(plot1, plot2, plot3, plot4, plot5, plot6, ncol = 3, nrow = 2);
+# Drzave <- grid.arrange(plot3, plot4, plot5, plot6, plot7, plot8, ncol = 3, nrow = 2);
 
 
 # ---------------------------------------------------------------------------- #
@@ -459,7 +456,7 @@ grid.arrange(plot1, plot2, plot3, plot4, plot5, plot6, ncol = 3, nrow = 2);
 
 # Traja nekaj sekund, da se nalozi 
 
-SIob_fort %>%
+Obcine <- SIob_fort %>%
   ggplot(aes(long, lat, group = group)) +
   geom_path(size = 0.01) +
   geom_polygon(aes(fill = delez), color = "black", show.legend = FALSE) +
