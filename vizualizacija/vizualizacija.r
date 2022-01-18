@@ -445,3 +445,55 @@ plot6 <- ggplot(AU) +
 
 
 grid.arrange(plot1, plot2, plot3, plot4, plot5, plot6, ncol = 3, nrow = 2);
+
+
+# ---------------------------------------------------------------------------- #
+# ---------------------- SLOVENSKA OBCINSKA STATISTIKA ----------------------- #
+# ---------------------------------------------------------------------------- #
+
+# V zadnjem delu bomo se prikazali delez odseljenih glede na stevilo, prebivalstva
+# za vsako obcino. Tako bomo videli katera regija se najbolj odseljuje.
+# nimam .SHP file za statisticen regije :(
+
+a = as.integer(obcine_odseljeni[1:212,12]);
+b = as.integer(obcine_prebivalstvo[1:212, 22]);
+
+delez = round((a/b)*100, digits = 2);
+
+df = data.frame(
+  id = as.character(0 : 211),
+  delez = (delez + 1)**(1/32)
+);
+
+SIob <- readOGR("podatki/OB.shp", layer = "OB", encoding = "UTF-8");
+
+SIob_fort <- SIob %>%
+  fortify("region");
+
+SIob_fort <- left_join(SIob_fort, df, by = "id");
+
+
+
+# VIZUALIZACIJA SLOVENSKIH OBCIN
+
+# Traja nekaj sekund, da se nalozi 
+
+SIob_fort %>%
+  ggplot(aes(long, lat, group = group)) +
+  geom_path(size = 0.01) +
+  geom_polygon(aes(fill = delez), color = "black", show.legend = FALSE) +
+  scale_fill_gradient(low = "yellow", high = "red") +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    panel.background = element_blank(),
+    panel.border = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.background = element_blank()
+  );
+
