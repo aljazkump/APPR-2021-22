@@ -19,21 +19,21 @@ B_NEM_mladi <- c(starost_Evropa$Nem.e8.ija[8], starost_Evropa$Nem.e8.ija[9], sta
 B_NEM_zreli <- c(starost_Evropa$Nem.e8.ija[18], starost_Evropa$Nem.e8.ija[19], starost_Evropa$Nem.e8.ija[20]);
 B_NEM_stari <- c(starost_Evropa$Nem.e8.ija[28], starost_Evropa$Nem.e8.ija[29], starost_Evropa$Nem.e8.ija[30]);
 
-B_CH_mladi <- c(starost_Evropa$Svica[8], starost_Evropa$Svica[9], starost_Evropa$Svica[10]);
-B_CH_zreli <- c(starost_Evropa$Svica[18], starost_Evropa$Svica[19], starost_Evropa$Svica[20]);
-B_CH_stari <- c(starost_Evropa$Svica[28], starost_Evropa$Svica[29], starost_Evropa$Svica[30]);
+B_CH_mladi <- c(starost_Evropa$X.U.008A.vica[8], starost_Evropa$X.U.008A.vica[9], starost_Evropa$X.U.008A.vica[10]);
+B_CH_zreli <- c(starost_Evropa$X.U.008A.vica[18], starost_Evropa$X.U.008A.vica[19], starost_Evropa$X.U.008A.vica[20]);
+B_CH_stari <- c(starost_Evropa$X.U.008A.vica[28], starost_Evropa$X.U.008A.vica[29], starost_Evropa$X.U.008A.vica[30]);
 
-B_UK_mladi <- c(starost_Evropa$Zdruzeno.kraljestvo[8], starost_Evropa$Zdruzeno.kraljestvo[9], starost_Evropa$Zdruzeno.kraljestvo[10]);
-B_UK_zreli <- c(starost_Evropa$Zdruzeno.kraljestvo[18], starost_Evropa$Zdruzeno.kraljestvo[19], starost_Evropa$Zdruzeno.kraljestvo[20]);
-B_UK_stari <- c(starost_Evropa$Zdruzeno.kraljestvo[28], starost_Evropa$Zdruzeno.kraljestvo[29], starost_Evropa$Zdruzeno.kraljestvo[30]);
+B_UK_mladi <- c(starost_Evropa$Zdru.U.009E.eno.kraljestvo[8], starost_Evropa$Zdru.U.009E.eno.kraljestvo[9], starost_Evropa$Zdru.U.009E.eno.kraljestvo[10]);
+B_UK_zreli <- c(starost_Evropa$Zdru.U.009E.eno.kraljestvo[18], starost_Evropa$Zdru.U.009E.eno.kraljestvo[19], starost_Evropa$Zdru.U.009E.eno.kraljestvo[20]);
+B_UK_stari <- c(starost_Evropa$Zdru.U.009E.eno.kraljestvo[28], starost_Evropa$Zdru.U.009E.eno.kraljestvo[29], starost_Evropa$Zdru.U.009E.eno.kraljestvo[30]);
 
 B_ITA_mladi <- c(starost_Evropa$Italija[8], starost_Evropa$Italija[9], starost_Evropa$Italija[10]);
 B_ITA_zreli <- c(starost_Evropa$Italija[18], starost_Evropa$Italija[19], starost_Evropa$Italija[20]);
 B_ITA_stari <- c(starost_Evropa$Italija[28], starost_Evropa$Italija[29], starost_Evropa$Italija[30]);
 
-B_HRT_mladi <- c(starost_Evropa$Hrvaska[8], starost_Evropa$Hrvaska[9], starost_Evropa$Hrvaska[10]);
-B_HRT_zreli <- c(starost_Evropa$Hrvaska[18], starost_Evropa$Hrvaska[19], starost_Evropa$Hrvaska[20]);
-B_HRT_stari <- c(starost_Evropa$Hrvaska[28], starost_Evropa$Hrvaska[29], starost_Evropa$Hrvaska[30]);
+B_HRT_mladi <- c(starost_Evropa$Hrva.U.009A.ka[8], starost_Evropa$Hrva.U.009A.ka[9], starost_Evropa$Hrva.U.009A.ka[10]);
+B_HRT_zreli <- c(starost_Evropa$Hrva.U.009A.ka[18], starost_Evropa$Hrva.U.009A.ka[19], starost_Evropa$Hrva.U.009A.ka[20]);
+B_HRT_stari <- c(starost_Evropa$Hrva.U.009A.ka[28], starost_Evropa$Hrva.U.009A.ka[29], starost_Evropa$Hrva.U.009A.ka[30]);
 
 B_AU_mladi <- c(starost_Evropa$Avstrija[8], starost_Evropa$Avstrija[9], starost_Evropa$Avstrija[10]);
 B_AU_zreli <- c(starost_Evropa$Avstrija[18], starost_Evropa$Avstrija[19], starost_Evropa$Avstrija[20]);
