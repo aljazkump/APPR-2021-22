@@ -7,13 +7,15 @@ sl <- locale("sl", decimal_mark=",", grouping_mark=".");
 
 starost_Evropa <- read.csv("podatki/starost_tujina.csv", encoding = "UTF-8");
 
-                          
+                           
+
 # Tabela, ki prikazuje stevilke odseljevanja v Evropske drzave 
 # glede na izobrazbo(osnovnosolka, srednjesolska, visokosolska)
 
 izobrazba_Evropa <- read.csv("podatki/Spol_Izobrazba_tujina.csv", encoding = "UTF-8");
 
-                                            
+  
+                                          
 # Tabela, ki prikazuje stevilke odseljevanja v Evropske drzave 
 # v tem primeru skoraj za vsako drzavo Evrope                                        
                       
@@ -58,8 +60,13 @@ CH = data.frame(Leta = 2011 : 2020,
                 zreli = starost[11:20,16],
                 stari = starost[21:30,16]
 );
+
+skupno_evropa = data.frame(
+  region = Evropa[1:34, 1],
+  stevilo = (Evropa[1:34, 12])**(1/(1.5))
+);
  
-                                            
+                                           
 # Tabela, ki prikazuje stevilke odseljevanja iz vsake obcine
  
 obcine_odseljeni <- read.csv("podatki/obcine.csv", encoding = "UTF-8");
@@ -68,6 +75,26 @@ obcine_odseljeni <- read.csv("podatki/obcine.csv", encoding = "UTF-8");
 # Tabela, ki prikazuje stevilo prebivalcev vsake obcine
 
 obcine_prebivalstvo <- read.csv("podatki/obcine_prebivalstvo.csv", encoding = "UTF-8");
+
+a = as.integer(obcine_odseljeni[1:212,12]);
+b = as.integer(obcine_prebivalstvo[1:212, 22]);
+
+delez = round((a/b)*100, digits = 2);
+
+
+# Tabela za kasnejso vizualizacijo obcin na zemljevidu 
+
+df = data.frame(
+  id = as.character(0 : 211),
+  delez = (delez + 1)**(1/32)
+);
+
+SIob <- readOGR("podatki/OB.shp", layer = "OB", encoding = "UTF-8");
+
+SIob_fort <- SIob %>%
+  fortify("region");
+
+SIob_fort <- left_join(SIob_fort, df, by = "id");
                                 
                                 
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije 
@@ -105,6 +132,42 @@ razvrstitev_po_izobrazbi_spolu_starosti = data.frame(
 
 );
 
+df_OS = data.frame(
+  
+  mladi_moski = sum(Starost_Izobrazba[1:10, 2]),
+  zreli_moski = sum(Starost_Izobrazba[1:10, 3]),
+  stari_moski = sum(Starost_Izobrazba[1:10, 4]),
+  
+  mlade_zenske = sum(Starost_Izobrazba[31:40, 2]),
+  zrele_zenske = sum(Starost_Izobrazba[31:40, 3]),
+  stare_zenske = sum(Starost_Izobrazba[31:40, 4])
+  
+);
+
+df_SS = data.frame(
+  
+  mladi_moski = sum(Starost_Izobrazba[11:20, 2]),
+  zreli_moski = sum(Starost_Izobrazba[11:20, 3]),
+  stari_moski = sum(Starost_Izobrazba[11:20, 4]),
+  
+  mlade_zenske = sum(Starost_Izobrazba[41:50, 2]),
+  zrele_zenske = sum(Starost_Izobrazba[41:50, 3]),
+  stare_zenske = sum(Starost_Izobrazba[41:50, 4])
+  
+);
+
+df_VS = data.frame(
+  
+  mladi_moski = sum(Starost_Izobrazba[21:30, 2]),
+  zreli_moski = sum(Starost_Izobrazba[21:30, 3]),
+  stari_moski = sum(Starost_Izobrazba[21:30, 4]),
+  
+  mlade_zenske = sum(Starost_Izobrazba[51:60, 2]),
+  zrele_zenske = sum(Starost_Izobrazba[51:60, 3]),
+  stare_zenske = sum(Starost_Izobrazba[51:60, 4])
+  
+);
+
 
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije 
 # glede na starost in spol    
@@ -129,6 +192,7 @@ razvrstitev_po_starosti_spolu = data.frame(
   moski_skupaj = Starost_spol[1:10, 6],
   zenske_skupaj = Starost_spol[11:20, 6]
 );
+
 
 
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije
