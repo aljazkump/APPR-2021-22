@@ -451,6 +451,7 @@ grid.arrange(plot1, plot2, plot3, plot4, plot5, plot6, ncol = 3, nrow = 2);
 # ---------------------- SLOVENSKA OBCINSKA STATISTIKA ----------------------- #
 # ---------------------------------------------------------------------------- #
 
+
 # V zadnjem delu bomo se prikazali delez odseljenih glede na stevilo, prebivalstva
 # za vsako obcino. Tako bomo videli katera regija se najbolj odseljuje.
 # nimam .SHP file za statisticen regije :(
@@ -471,7 +472,6 @@ SIob_fort <- SIob %>%
   fortify("region");
 
 SIob_fort <- left_join(SIob_fort, df, by = "id");
-
 
 
 # VIZUALIZACIJA SLOVENSKIH OBCIN
