@@ -7,15 +7,13 @@ sl <- locale("sl", decimal_mark=",", grouping_mark=".");
 
 starost_Evropa <- read.csv("podatki/starost_tujina.csv", encoding = "UTF-8");
 
-                           
 
 # Tabela, ki prikazuje stevilke odseljevanja v Evropske drzave 
 # glede na izobrazbo(osnovnosolka, srednjesolska, visokosolska)
 
 izobrazba_Evropa <- read.csv("podatki/Spol_Izobrazba_tujina.csv", encoding = "UTF-8");
 
-  
-                                          
+                                           
 # Tabela, ki prikazuje stevilke odseljevanja v Evropske drzave 
 # v tem primeru skoraj za vsako drzavo Evrope                                        
                       
@@ -192,7 +190,6 @@ razvrstitev_po_starosti_spolu = data.frame(
   moski_skupaj = Starost_spol[1:10, 6],
   zenske_skupaj = Starost_spol[11:20, 6]
 );
-
 
 
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije
