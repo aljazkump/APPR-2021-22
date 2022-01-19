@@ -8,14 +8,12 @@ sl <- locale("sl", decimal_mark=",", grouping_mark=".");
 starost_Evropa <- read.csv("podatki/starost_tujina.csv", encoding = "UTF-8");
 
                            
-
 # Tabela, ki prikazuje stevilke odseljevanja v Evropske drzave 
 # glede na izobrazbo(osnovnosolka, srednjesolska, visokosolska)
 
 izobrazba_Evropa <- read.csv("podatki/Spol_Izobrazba_tujina.csv", encoding = "UTF-8");
 
   
-                                          
 # Tabela, ki prikazuje stevilke odseljevanja v Evropske drzave 
 # v tem primeru skoraj za vsako drzavo Evrope                                        
                       
@@ -100,71 +98,71 @@ SIob_fort <- left_join(SIob_fort, df, by = "id");
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije 
 # glede na izobrazbo, spol in starost                              
                                 
-starost_izobrazba = read.csv("podatki/Starost_Izobrazba_splosno.csv", encoding = "UTF-8");
+starost_izobrazba_spol = read.csv("podatki/Starost_Izobrazba_splosno.csv", encoding = "UTF-8");
 
 razvrstitev_po_izobrazbi_spolu_starosti = data.frame(
   
   leto = 2011 : 2020,
 
-  mladi_moski_OS = starost_izobrazba[1:10, 2],
-  zreli_moski_OS = starost_izobrazba[1:10, 3],
-  stari_moski_OS = starost_izobrazba[1:10, 4],
+  mladi_moski_OS = starost_izobrazba_spol[1:10, 2],
+  zreli_moski_OS = starost_izobrazba_spol[1:10, 3],
+  stari_moski_OS = starost_izobrazba_spol[1:10, 4],
   
-  mladi_moski_SS = starost_izobrazba[11:20, 2],
-  zreli_moski_SS = starost_izobrazba[11:20, 3],
-  stari_moski_SS = starost_izobrazba[11:20, 4],
+  mladi_moski_SS = starost_izobrazba_spol[11:20, 2],
+  zreli_moski_SS = starost_izobrazba_spol[11:20, 3],
+  stari_moski_SS = starost_izobrazba_spol[11:20, 4],
   
-  mladi_moski_VS = starost_izobrazba[21:30, 2],
-  zreli_moski_VS = starost_izobrazba[21:30, 3],
-  stari_moski_VS = starost_izobrazba[21:30, 4],
+  mladi_moski_VS = starost_izobrazba_spol[21:30, 2],
+  zreli_moski_VS = starost_izobrazba_spol[21:30, 3],
+  stari_moski_VS = starost_izobrazba_spol[21:30, 4],
   
-  mlade_zenske_OS = starost_izobrazba[31:40, 2],
-  zrele_zenske_OS = starost_izobrazba[31:40, 3],
-  stare_zenske_OS = starost_izobrazba[31:40, 4],
+  mlade_zenske_OS = starost_izobrazba_spol[31:40, 2],
+  zrele_zenske_OS = starost_izobrazba_spol[31:40, 3],
+  stare_zenske_OS = starost_izobrazba_spol[31:40, 4],
   
-  mlade_zenske_SS = starost_izobrazba[41:50, 2],
-  zrele_zenske_SS = starost_izobrazba[41:50, 3],
-  stare_zenske_SS = starost_izobrazba[41:50, 4],
+  mlade_zenske_SS = starost_izobrazba_spol[41:50, 2],
+  zrele_zenske_SS = starost_izobrazba_spol[41:50, 3],
+  stare_zenske_SS = starost_izobrazba_spol[41:50, 4],
   
-  mlade_zenske_VS = starost_izobrazba[51:60, 2],
-  zrele_zenske_VS = starost_izobrazba[51:60, 3],
-  stare_zenske_VS = starost_izobrazba[51:60, 4]
+  mlade_zenske_VS = starost_izobrazba_spol[51:60, 2],
+  zrele_zenske_VS = starost_izobrazba_spol[51:60, 3],
+  stare_zenske_VS = starost_izobrazba_spol[51:60, 4]
 
 );
 
 df_OS = data.frame(
   
-  mladi_moski = sum(starost_izobrazba[1:10, 2]),
-  zreli_moski = sum(starost_izobrazba[1:10, 3]),
-  stari_moski = sum(starost_izobrazba[1:10, 4]),
+  mladi_moski = sum(starost_izobrazba_spol[1:10, 2]),
+  zreli_moski = sum(starost_izobrazba_spol[1:10, 3]),
+  stari_moski = sum(starost_izobrazba_spol[1:10, 4]),
   
-  mlade_zenske = sum(starost_izobrazba[31:40, 2]),
-  zrele_zenske = sum(starost_izobrazba[31:40, 3]),
-  stare_zenske = sum(starost_izobrazba[31:40, 4])
+  mlade_zenske = sum(starost_izobrazba_spol[31:40, 2]),
+  zrele_zenske = sum(starost_izobrazba_spol[31:40, 3]),
+  stare_zenske = sum(starost_izobrazba_spol[31:40, 4])
   
 );
 
 df_SS = data.frame(
   
-  mladi_moski = sum(starost_izobrazba[11:20, 2]),
-  zreli_moski = sum(starost_izobrazba[11:20, 3]),
-  stari_moski = sum(starost_izobrazba[11:20, 4]),
+  mladi_moski = sum(starost_izobrazba_spol[11:20, 2]),
+  zreli_moski = sum(starost_izobrazba_spol[11:20, 3]),
+  stari_moski = sum(starost_izobrazba_spol[11:20, 4]),
   
-  mlade_zenske = sum(starost_izobrazba[41:50, 2]),
-  zrele_zenske = sum(starost_izobrazba[41:50, 3]),
-  stare_zenske = sum(starost_izobrazba[41:50, 4])
+  mlade_zenske = sum(starost_izobrazba_spol[41:50, 2]),
+  zrele_zenske = sum(starost_izobrazba_spol[41:50, 3]),
+  stare_zenske = sum(starost_izobrazba_spol[41:50, 4])
   
 );
 
 df_VS = data.frame(
   
-  mladi_moski = sum(starost_izobrazba[21:30, 2]),
-  zreli_moski = sum(starost_izobrazba[21:30, 3]),
-  stari_moski = sum(starost_izobrazba[21:30, 4]),
+  mladi_moski = sum(starost_izobrazba_spol[21:30, 2]),
+  zreli_moski = sum(starost_izobrazba_spol[21:30, 3]),
+  stari_moski = sum(starost_izobrazba_spol[21:30, 4]),
   
-  mlade_zenske = sum(starost_izobrazba[51:60, 2]),
-  zrele_zenske = sum(starost_izobrazba[51:60, 3]),
-  stare_zenske = sum(starost_izobrazba[51:60, 4])
+  mlade_zenske = sum(starost_izobrazba_spol[51:60, 2]),
+  zrele_zenske = sum(starost_izobrazba_spol[51:60, 3]),
+  stare_zenske = sum(starost_izobrazba_spol[51:60, 4])
   
 );
 
