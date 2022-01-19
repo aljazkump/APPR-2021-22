@@ -29,8 +29,7 @@ Moski_starost <- ggplot(DF_STAROST_SPOL) +
   geom_bar(aes(leto, zreli_moski, fill = "zreli", group = 1), stat = "identity") +
   geom_bar(aes(leto, mladi_moski, fill = "mladi", group = 1), stat = "identity") +
   geom_bar(aes(leto, stari_moski, fill = "stari", group = 1), stat = "identity") +
-  labs(title = "IZSELJEVANJE MOSKEGA PREBIVALSTVA PO STAROSTI", 
-       y = "STEVILO", 
+  labs(y = "STEVILO", 
        x = "LETO", 
        temp = "Legend") +
   scale_x_continuous(breaks = seq(2011, 2021, 1)) +
@@ -47,8 +46,7 @@ Zenske_starost <- ggplot(DF_STAROST_SPOL) +
   geom_bar(aes(leto, mlade_zenske, fill = "mladi", group = 1), stat = "identity") +
   geom_bar(aes(leto, zrele_zenske, fill = "zreli", group = 1), stat = "identity") +
   geom_bar(aes(leto, stare_zenske, fill = "stari", group = 1), stat = "identity") +
-  labs(title = "IZSELJEVANJA ZENSKEGA PREBIVALSTVA PO STAROSTI", 
-       y = "STEVILO", 
+  labs(y = "STEVILO", 
        x = "LETO", 
        temp = "Legend") +
   scale_x_continuous(breaks = seq(2011, 2021, 1)) +
@@ -76,8 +74,7 @@ Mladi_Zreli <- ggplot(df2, aes(x=leta, y=value, fill=variable)) +
   geom_bar(stat='identity', position='dodge') +
   scale_x_continuous(breaks = seq(2011, 2021, 1)) +
   scale_y_continuous(breaks = seq(0, 10000, 500)) + 
-  ggtitle("IZSELJEVANJE MLADEGA IN ZRELEGA PREBIVALSTVA") +
-  labs(x = "Leta", y = "Stevilo") +
+  labs(x = "LETA", y = "STEVILA") +
   theme(panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(color = "black", linetype = "dotted"),
         legend.position = "bottom",
@@ -96,7 +93,7 @@ Povprecje <- ggplot(DF_STAROST_SPOL) +
   geom_point(aes(leto, povprecna_starost_moskih, group = 1, color = "moski"), size = 5, alpha = 0.5) +
   geom_line(aes(leto, povprecna_starost_zensk, group = 1, color = "zenske"), size = 1.5) +
   geom_point(aes(leto, povprecna_starost_zensk, group = 1, color = "zenske"), size = 5, alpha = 0.5) +
-  labs(title = "POVPRECNA STAROST IZSELJEVANJA", x = "Leto", y = "Starost") + 
+  labs(x = "LETO", y = "STAROST") + 
   scale_x_continuous(breaks = seq(2011, 2021, 1)) + 
   scale_y_continuous(breaks = seq(30, 40, 1)) + 
   theme(panel.background = element_rect(fill = "white"),
@@ -120,9 +117,9 @@ Mladi_moski <- ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
   geom_point(aes(leto, mladi_moski_SS, group = 1, color = "Srednja sola"), size = 5, alpha = 0.5) +
   geom_line(aes(leto, mladi_moski_VS, group = 1, color = "Visja sola"), size = 1.5) +
   geom_point(aes(leto, mladi_moski_VS, group = 1, color = "Visja sola"), size = 5, alpha = 0.5) +
-  labs(title = "IZSELJEVANJE MLADEGA MOSKEGA PREBIVALSTVA", 
-       y = "Stevilo", 
-       x = "Leto", 
+  labs( y = "Stevilo", 
+       x = "LETO", 
+       title = "MOSKI",
        barve = "Legend") +
   scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
   scale_y_continuous(breaks = seq(100, 1300, 100)) +
@@ -142,9 +139,9 @@ Mlade_zenske <- ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
   geom_point(aes(leto, mlade_zenske_SS, group = 1, color = "Srednja sola"), size = 5, alpha = 0.5) +
   geom_line(aes(leto, mlade_zenske_VS, group = 1, color = "Visja sola"), size = 1.5) +
   geom_point(aes(leto, mlade_zenske_VS, group = 1, color = "Visja sola"), size = 5, alpha = 0.5) +
-  labs(title = "IZSELJEVANJE MLADEGA ZENSKEGA PREBIVALSTVA", 
-       y = "Stevilo", 
-       x = "Leto", 
+  labs(y = "STEVILO", 
+       x = "LETO", 
+       title = "ZENSKE",
        barve = "Legend") +
   scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
   scale_y_continuous(breaks = seq(100, 1300, 100)) +
@@ -163,9 +160,9 @@ Zreli_moski <- ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
   geom_point(aes(leto, zreli_moski_SS, group = 1, color = "Srednja sola"), size = 5, alpha = 0.5) +
   geom_line(aes(leto, zreli_moski_VS, group = 1, color = "Visja sola"), size = 1.5) +
   geom_point(aes(leto, zreli_moski_VS, group = 1, color = "Visja sola"), size = 5, alpha = 0.5) +
-  labs(title = "IZSELJEVANJE ZRELEGA MOSKEGA PREBIVALSTVA", 
-       y = "Stevilo", 
-       x = "Leto", 
+  labs(title = " MOSKI", 
+       y = "STEVILO", 
+       x = "LETO", 
        barve = "Legend") +
   scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
   scale_y_continuous(breaks = seq(100, 1300, 100)) +
@@ -184,7 +181,7 @@ Zrele_zenske <- ggplot(razvrstitev_po_izobrazbi_spolu_starosti) +
   geom_point(aes(leto, zrele_zenske_SS, group = 1, color = "Srednja sola"), size = 5, alpha = 0.5) +
   geom_line(aes(leto, zrele_zenske_VS, group = 1, color = "Visja sola"), size = 1.5) +
   geom_point(aes(leto, zrele_zenske_VS, group = 1, color = "Visja sola"), size = 5, alpha = 0.5) +
-  labs(title = "IZSELJEVANJE ZRELEGA ZENSKEGA PREBIVALSTVA", 
+  labs(title = "ZENSKE", 
        y = "STEVILO", 
        x = "LETO", 
        barve = "Legend") +
@@ -283,7 +280,7 @@ plot1 <- ggplot(aktivnost) +
   geom_point(aes(Leto, razlika_zrele + razlika_zreli), color = "green", size = 3, alpha = 0.5) +
   scale_x_continuous(breaks = seq(2011, 2020, 1)) +
   ggtitle("RAZLIKA MED AKTIVNIM IN NEAKTIVNIM ZRELIM PREBIVALSTVOM") +
-  labs(y = "RAZLIKA") +
+  labs(y = "RAZLIKA", x = "LETO") +
   theme(panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(color = "black", linetype = "dotted"),
         legend.position = "bottom",
@@ -302,7 +299,7 @@ plot2 <- ggplot(aktivnost) +
   geom_point(aes(Leto, razlika_mladi + razlika_mlade), color = "red", size = 3, alpha = 0.5) +
   scale_x_continuous(breaks = seq(2011, 2020, 1)) +
   ggtitle("RAZLIKA MED AKTIVNIM IN NEAKTIVNIM MLADIM PREBIVALSTVOM") +
-  labs(y = "RAZLIKA") +
+  labs(y = "RAZLIKA", x = "LETO") +
   theme(panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(color = "black", linetype = "dotted"),
         legend.position = "bottom",
