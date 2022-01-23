@@ -185,10 +185,7 @@ razvrstitev_po_starosti_spolu = data.frame(
   stare_zenske = Starost_spol[11:20, 4],
   
   povprecna_starost_moskih = Starost_spol[1:10, 5],
-  povprecna_starost_zensk = Starost_spol[11:20, 5],
-  
-  moski_skupaj = Starost_spol[1:10, 6],
-  zenske_skupaj = Starost_spol[11:20, 6]
+  povprecna_starost_zensk = Starost_spol[11:20, 5]
 );
 
 
