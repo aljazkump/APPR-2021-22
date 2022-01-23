@@ -1,7 +1,5 @@
 # 2. faza: Uvoz podatkov
 
-sl <- locale("sl", decimal_mark=",", grouping_mark=".");
-
 # Tabela, ki prikazuje stevilke odseljevanja v Evropske drzave 
 # glede na starost(mladi, zreli, stari)
 
