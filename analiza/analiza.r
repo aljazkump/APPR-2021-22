@@ -105,9 +105,7 @@ df_STAROST_SPOL = data.frame(
   zrele_zenske= sum(solve(A, Zrele) * y),
   stare_zenske = sum(solve(A, Stare) * y),
   povprecna_starost_moskih = sum(solve(A, Povprecje_moski) * y),
-  povprecna_starost_zensk = sum(solve(A, Povprecje_zenske) * y),
-  moski_skupaj = 0,
-  zenske_skupaj = 0
+  povprecna_starost_zensk = sum(solve(A, Povprecje_zenske) * y)
   );
 
 DF_STAROST_SPOL = rbind(razvrstitev_po_starosti_spolu, df_STAROST_SPOL);
