@@ -1,213 +1,175 @@
 # 2. faza: Uvoz podatkov
 
+sl <- locale("sl", decimal_mark=",", grouping_mark=".");
+
 # Tabela, ki prikazuje stevilke odseljevanja v Evropske drzave 
 # glede na starost(mladi, zreli, stari)
 
-starost_Evropa <- read.csv("podatki/starost_tujina.csv", encoding = "UTF-8");
+Starost_Evropa <- read.csv(
+  "podatki/starost_tujina.csv",
+  locale = locale(encoding = "Windows-1250")
+)
 
-                           
-# Tabela, ki prikazuje stevilke odseljevanja v Evropske drzave 
-# glede na izobrazbo(osnovnosolka, srednjesolska, visokosolska)
+drzave = c("Avstrija", "Hrvaska", "Nemcija", "Italija", "Svica", "Zdruzeno.kraljestvo")
 
-izobrazba_Evropa <- read.csv("podatki/Spol_Izobrazba_tujina.csv", encoding = "UTF-8");
+Starost_Evropa <- Starost_Evropa %>% select(Leto, drzave)
 
-  
+Tabela_EU_Mladi <- function(drzava) {
+  Starost_Evropa[1:10, 1:length(Starost_Evropa)] %>% 
+    pivot_longer(cols = colnames(Starost_Evropa[1:10, 1:length(Starost_Evropa)])[-1],
+                 names_to = "DRZAVE", values_to = "MLADI") %>% filter(DRZAVE == drzava)
+}
+
+Tabela_EU_Zreli <- function(drzava) {
+  Starost_Evropa[11:20, 1:length(Starost_Evropa)] %>% 
+    pivot_longer(cols = colnames(Starost_Evropa[11:20, 1:length(Starost_Evropa)])[-1],
+                 names_to = "DRZAVE", values_to = "ZRELI") %>% filter(DRZAVE == drzava)
+}
+
+Tabela_EU_Stari <- function(drzava) {
+  Starost_Evropa[21:30, 1:length(Starost_Evropa)] %>% 
+    pivot_longer(cols = colnames(Starost_Evropa[11:30, 1:length(Starost_Evropa)])[-1],
+                 names_to = "DRZAVE", values_to = "STARI") %>% filter(DRZAVE == drzava)
+}
+
+f1 = full_join(Tabela_EU_Mladi("Avstrija"), Tabela_EU_Mladi("Hrvaska"))
+f2 = full_join(Tabela_EU_Mladi("Nemcija"), Tabela_EU_Mladi("Italija"))
+f3 = full_join(Tabela_EU_Mladi("Svica"), Tabela_EU_Mladi("Zdruzeno.kraljestvo"))
+w1 = full_join(full_join(f1, f2), f3)
+
+f4 = full_join(Tabela_EU_Zreli("Avstrija"), Tabela_EU_Zreli("Hrvaska"))
+f5 = full_join(Tabela_EU_Zreli("Nemcija"), Tabela_EU_Zreli("Italija"))
+f6 = full_join(Tabela_EU_Zreli("Svica"), Tabela_EU_Zreli("Zdruzeno.kraljestvo"))
+w2 = full_join(full_join(f4, f5), f6)
+
+f7 = full_join(Tabela_EU_Stari("Avstrija"), Tabela_EU_Stari("Hrvaska"))
+f8 = full_join(Tabela_EU_Stari("Nemcija"), Tabela_EU_Stari("Italija"))
+f9 = full_join(Tabela_EU_Stari("Svica"), Tabela_EU_Stari("Zdruzeno.kraljestvo"))
+w3 = full_join(full_join(f7, f8), f9)
+
+starost_evropa <- full_join(full_join(w1,w2),w3)
+
 # Tabela, ki prikazuje stevilke odseljevanja v Evropske drzave 
 # v tem primeru skoraj za vsako drzavo Evrope                                        
                       
-Evropa <- read.csv("podatki/starost_EU.csv", encoding = "UTF-8");
+Evropa <- read.csv(
+  "podatki/starost_EU.csv",
+  locale = locale(encoding = "Windows-1250")
+)
 
+evropa <- Evropa %>% select(X, Skupno)
+colnames(evropa) <- c("DRZAVE", "SKUPNO")
 
-# PODATKI ZA DRZAVE Z VECJIM PRISELJEVANJEM
-
-AU = data.frame(Leta = 2011 : 2020,
-                mladi = starost_Evropa[1:10,7],
-                zreli = starost_Evropa[11:20,7],
-                stari = starost_Evropa[21:30,7]
-);
-
-HRT = data.frame(Leta = 2011 : 2020,
-                 mladi = starost_Evropa[1:10,10],
-                 zreli = starost_Evropa[11:20,10],
-                 stari = starost_Evropa[21:30,10]
-);
-
-ITA = data.frame(Leta = 2011 : 2020,
-                 mladi = starost_Evropa[1:10,11],
-                 zreli = starost_Evropa[11:20,11],
-                 stari = starost_Evropa[21:30,11]
-);
-
-NEM = data.frame(Leta = 2011 : 2020,
-                 mladi = starost_Evropa[1:10,12],
-                 zreli = starost_Evropa[11:20,12],
-                 stari = starost_Evropa[21:30,12]
-);
-
-
-UK = data.frame(Leta = 2011 : 2020,
-                mladi = starost_Evropa[1:10,14],
-                zreli = starost_Evropa[11:20,14],
-                stari = starost_Evropa[21:30,14]
-);
-
-CH = data.frame(Leta = 2011 : 2020,
-                mladi = starost_Evropa[1:10,16],
-                zreli = starost_Evropa[11:20,16],
-                stari = starost_Evropa[21:30,16]
-);
-
-skupno_evropa = data.frame(
-  region = Evropa[1:34, 1],
-  stevilo = (Evropa[1:34, 12])**(1/(1.5))
-);
+evropa <- evropa %>% pivot_longer(cols = names(.)[-1], names_to = "x", values_to = "SKUPNO") %>%
+  select(-x)
  
                                            
 # Tabela, ki prikazuje stevilke odseljevanja iz vsake obcine
  
-obcine_odseljeni <- read.csv("podatki/obcine.csv", encoding = "UTF-8");
+Obcine_Odseljeni <- read.csv(
+  "podatki/obcine.csv", 
+  locale = locale(encoding = "Windows-1250")
+)
 
+Obcine_Odseljeni %>% select(X, Skupaj)
+colnames(Obcine_Odseljeni) <- c("OBCINE", "SKUPAJ")
+Obcine_Odseljeni <- Obcine_Odseljeni[1:212, 1:2]
 
-# Tabela, ki prikazuje stevilo prebivalcev vsake obcine
-
-obcine_prebivalstvo <- read.csv("podatki/obcine_prebivalstvo.csv", encoding = "UTF-8");
-
-a = as.integer(obcine_odseljeni[1:212,12]);
-b = as.integer(obcine_prebivalstvo[1:212, 22]);
-
-delez = round((a/b)*100, digits = 2);
+delez = df
 
 
 # Tabela za kasnejso vizualizacijo obcin na zemljevidu 
 
-df = data.frame(
-  id = as.character(0 : 211),
-  delez = (delez + 1)**(1/32)
-);
-
-SIob <- readOGR("podatki/OB.shp", layer = "OB", encoding = "UTF-8");
+SIob <- readOGR("podatki/OB.shp", layer = "OB", encoding = "Windows-1250");
 
 SIob_fort <- SIob %>%
   fortify("region");
 
-SIob_fort <- left_join(SIob_fort, df, by = "id");
+SIob_fort <- left_join(SIob_fort, delez, by = "id");
                                 
                                 
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije 
-# glede na izobrazbo, spol in starost                              
+# glede na izobrazbo, spol in starost 
+
+Starost_Izobrazba_Spol = read.csv(
+  "podatki/Starost_Izobrazba_splosno.csv",
+  locale = locale(encoding = "Windows-1250")
+)
+
+a1 = full_join(
+  Tabela(1,10, "OS_moski", Starost_Izobrazba_Spol),
+  Tabela(11,20, "SS_moski", Starost_Izobrazba_Spol)
+);
+
+a2 = full_join(
+  Tabela(21,30, "VS_moski", Starost_Izobrazba_Spol),
+  Tabela(31,40, "OS_zenske", Starost_Izobrazba_Spol)
+);
+
+a3 = full_join(
+  Tabela(41,50, "SS_zenske", Starost_Izobrazba_Spol),
+  Tabela(51,60, "VS_zenske", Starost_Izobrazba_Spol)
+);
+
+starost_izobrazba_spol = full_join(full_join(a1,a2),a3)
                                 
-starost_izobrazba_spol = read.csv("podatki/Starost_Izobrazba_splosno.csv", encoding = "UTF-8");
-
-razvrstitev_po_izobrazbi_spolu_starosti = data.frame(
-  
-  leto = 2011 : 2020,
-
-  mladi_moski_OS = starost_izobrazba_spol[1:10, 2],
-  zreli_moski_OS = starost_izobrazba_spol[1:10, 3],
-  stari_moski_OS = starost_izobrazba_spol[1:10, 4],
-  
-  mladi_moski_SS = starost_izobrazba_spol[11:20, 2],
-  zreli_moski_SS = starost_izobrazba_spol[11:20, 3],
-  stari_moski_SS = starost_izobrazba_spol[11:20, 4],
-  
-  mladi_moski_VS = starost_izobrazba_spol[21:30, 2],
-  zreli_moski_VS = starost_izobrazba_spol[21:30, 3],
-  stari_moski_VS = starost_izobrazba_spol[21:30, 4],
-  
-  mlade_zenske_OS = starost_izobrazba_spol[31:40, 2],
-  zrele_zenske_OS = starost_izobrazba_spol[31:40, 3],
-  stare_zenske_OS = starost_izobrazba_spol[31:40, 4],
-  
-  mlade_zenske_SS = starost_izobrazba_spol[41:50, 2],
-  zrele_zenske_SS = starost_izobrazba_spol[41:50, 3],
-  stare_zenske_SS = starost_izobrazba_spol[41:50, 4],
-  
-  mlade_zenske_VS = starost_izobrazba_spol[51:60, 2],
-  zrele_zenske_VS = starost_izobrazba_spol[51:60, 3],
-  stare_zenske_VS = starost_izobrazba_spol[51:60, 4]
-
-);
-
-df_OS = data.frame(
-  
-  mladi_moski = sum(starost_izobrazba_spol[1:10, 2]),
-  zreli_moski = sum(starost_izobrazba_spol[1:10, 3]),
-  stari_moski = sum(starost_izobrazba_spol[1:10, 4]),
-  
-  mlade_zenske = sum(starost_izobrazba_spol[31:40, 2]),
-  zrele_zenske = sum(starost_izobrazba_spol[31:40, 3]),
-  stare_zenske = sum(starost_izobrazba_spol[31:40, 4])
-  
-);
-
-df_SS = data.frame(
-  
-  mladi_moski = sum(starost_izobrazba_spol[11:20, 2]),
-  zreli_moski = sum(starost_izobrazba_spol[11:20, 3]),
-  stari_moski = sum(starost_izobrazba_spol[11:20, 4]),
-  
-  mlade_zenske = sum(starost_izobrazba_spol[41:50, 2]),
-  zrele_zenske = sum(starost_izobrazba_spol[41:50, 3]),
-  stare_zenske = sum(starost_izobrazba_spol[41:50, 4])
-  
-);
-
-df_VS = data.frame(
-  
-  mladi_moski = sum(starost_izobrazba_spol[21:30, 2]),
-  zreli_moski = sum(starost_izobrazba_spol[21:30, 3]),
-  stari_moski = sum(starost_izobrazba_spol[21:30, 4]),
-  
-  mlade_zenske = sum(starost_izobrazba_spol[51:60, 2]),
-  zrele_zenske = sum(starost_izobrazba_spol[51:60, 3]),
-  stare_zenske = sum(starost_izobrazba_spol[51:60, 4])
-  
-);
-
 
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije 
 # glede na starost in spol    
 
-Starost_spol = read.csv("podatki/starost_spol.csv", encoding = "UTF-8");
-                        
-razvrstitev_po_starosti_spolu = data.frame(
-  
-  leto = 2011 : 2020,
-  
-  mladi_moski = Starost_spol[1:10, 2],
-  zreli_moski = Starost_spol[1:10, 3],
-  stari_moski = Starost_spol[1:10, 4],
-  
-  mlade_zenske = Starost_spol[11:20, 2],
-  zrele_zenske = Starost_spol[11:20, 3],
-  stare_zenske = Starost_spol[11:20, 4],
-  
-  povprecna_starost_moskih = Starost_spol[1:10, 5],
-  povprecna_starost_zensk = Starost_spol[11:20, 5]
-);
+Starost_Spol = read_csv(
+  "podatki/starost_spol.csv",
+  locale = sl
+)
 
+Tabela <- function(a, b, value, detoteka) {
+  detoteka[a:b,1:length(detoteka)] %>%
+    pivot_longer(
+      cols = colnames(detoteka[a:b, 1:length(detoteka)])[-1],
+      names_to = "Kategorija",
+      values_to = value
+    ) %>%
+    filter(Kategorija %in% c("Mladi", "Zreli", "Stari")) %>%
+    arrange(Kategorija, Leto)
+}
+
+starost_spol = full_join(
+  Tabela(1,10, "Moski", Starost_Spol),
+  Tabela(11,20, "Zenske", Starost_Spol)
+);
 
 
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije
 # glede na aktivnost(zaposlen, nezaposlen) in spol
 
-aktivnost = read.csv("podatki/aktivnost_splosno.csv", encoding = "UTF-8");
-
-razvrstitev_po_aktivnosti_spolu = data.frame(
-  
-  leto = 2011 : 2020,
-  
-  mladi_zaposleni = aktivnost[1:10, 2],
-  mlade_zaposlene = aktivnost[1:10, 6],
-  
-  zreli_zaposleni = aktivnost[1:10, 3],
-  zrele_zaposlene = aktivnost[1:10, 7],
-  
-  mladi_nezaposleni = aktivnost[1:10, 4],
-  mlade_nezaposlene = aktivnost[1:10, 8],
-  
-  zreli_nezaposleni = aktivnost[1:10, 5],
-  zrele_nezaposlene = aktivnost[1:10, 9]
-  
+Aktivnost = read.csv(
+  "podatki/aktivnost_splosno.csv",
+  locale = locale(encoding = "Windows-1250")
 );
+
+Zaposleni <- function(a,b,value) {
+  Aktivnost[a:b, 1:length(Aktivnost)] %>% select(Leto,Zaposleno) %>% 
+    pivot_longer(cols = colnames(Aktivnost[a:b, 1:2])[-1], names_to = "STATUS", values_to = value)          
+}
+
+Nezaposleni <- function(a,b,value) {
+  Aktivnost[a:b, 1:length(Aktivnost)] %>% select(Leto,Nezaposleno) %>% 
+    pivot_longer(cols = colnames(Aktivnost[a:b, seq(1,3,2)])[-1], names_to = "STATUS", values_to = value)          
+}
+
+Mladi_zaposleni = Zaposleni(1, 10, "MLADI")
+Zreli_zaposleni = Zaposleni(11, 20, "ZRELI")
+Mlade_zaposlene = Zaposleni(21, 30, "MLADE")
+Zrele_zaposlene = Zaposleni(31, 40, "ZRELE")
+
+aktivnost_temp1 = full_join(full_join(Mladi_zaposleni, Zreli_zaposleni) , full_join(Mlade_zaposlene, Zrele_zaposlene))
+
+Mladi_nezaposleni = Nezaposleni(1, 10, "MLADI")
+Zreli_nezaposleni = Nezaposleni(11, 20, "ZRELI")
+Mlade_nezaposlene = Nezaposleni(21, 30, "MLADE")
+Zrele_nezaposlene = Nezaposleni(31, 40, "ZRELE")
+
+aktivnost_temp2 = full_join(full_join(Mladi_nezaposleni, Zreli_nezaposleni) , full_join(Mlade_nezaposlene, Zrele_nezaposlene))
+
+aktivnost = full_join(akti_temp1, akti_temp2)
                                 
