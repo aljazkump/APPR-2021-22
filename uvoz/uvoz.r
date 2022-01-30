@@ -112,6 +112,22 @@ a3 = full_join(
 );
 
 starost_izobrazba_spol = full_join(full_join(a1,a2),a3)
+
+Izseljevanje_Mladi_Moski <- starost_izobrazba_spol %>%
+  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Mladi") %>%
+  filter(name %in% c("OS_moski","SS_moski","VS_moski"))
+
+Izseljevanje_Mlade_Zenske <- starost_izobrazba_spol %>%
+  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Mladi") %>%
+  filter(name %in% c("OS_zenske","SS_zenske","VS_zenske"))
+
+Izseljevanje_Zreli_Moski <- starost_izobrazba_spol %>%
+  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Zreli") %>%
+  filter(name %in% c("OS_moski","SS_moski","VS_moski"))
+
+Izseljevanje_Mlade_Zenske <- starost_izobrazba_spol %>%
+  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Zreli") %>%
+  filter(name %in% c("OS_zenske","SS_zenske","VS_zenske"))
                                 
 
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije 
@@ -133,10 +149,15 @@ Tabela <- function(a, b, value, detoteka) {
     arrange(Kategorija, Leto)
 }
 
-starost_spol = full_join(
-  Tabela(1,10, "Moski", Starost_Spol),
-  Tabela(11,20, "Zenske", Starost_Spol)
-);
+
+Izseljevanje_Moski_Starost  <- Tabela(1,10, "Moski", Starost_Spol)
+
+Izseljevanje_Zenske_Starost <- Tabela(11,20, "Zenske", Starost_Spol)
+
+Izseljevanje_Mladi_Zreli <- full_join(Izseljevanje_Moski_Starost, 
+                                      Izseljevanje_Zenske_Starost) %>%
+  filter(Kategorija %in% c("Mladi", "Zreli"))
+
 
 
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije
@@ -172,4 +193,9 @@ Zrele_nezaposlene = Nezaposleni(31, 40, "ZRELE")
 aktivnost_temp2 = full_join(full_join(Mladi_nezaposleni, Zreli_nezaposleni) , full_join(Mlade_nezaposlene, Zrele_nezaposlene))
 
 aktivnost = full_join(akti_temp1, akti_temp2)
+
+
+starost_izobrazba_spol[1:length(starost_izobrazba_spol), 1:5] %>%
+  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Mladi") %>%
+  arrange(name) %>% ggplot() + geom_area(aes(Leto, value, fill = name))
                                 
