@@ -11,26 +11,24 @@
 
 # IZSELJEVANJE MOSKEGA PREBIVALSTVA PO STAROSTI
 
-starost_spol %>% select(Leto, Moski, Kategorija) %>%
-  ggplot(aes(Leto, Moski, fill = Kategorija)) +
-  geom_bar(stat = "identity", position = "fill") +
-  labs(y = "STEVILO", x = "LETO") +
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.title = element_blank());
+ggplot(Izseljevanje_Moski_Starost, aes(Leto, Moski, fill = Kategorija)) +
+geom_bar(stat = "identity", position = "fill") +
+labs(y = "STEVILO", x = "LETO") +
+scale_x_continuous(breaks = seq(2011, 2020, 1)) +
+theme(panel.background = element_rect(fill = "white"),
+      panel.grid.major = element_line(color = "black", linetype = "dotted"),
+      legend.title = element_blank());
 
 
 # IZSELJEVANJA ZENSKEGA PREBIVALSTVA PO STAROSTI
 
-starost_spol %>% select(Leto, Zenske, Kategorija) %>%
-  ggplot(aes(Leto, Zenske, fill = Kategorija)) +
-  geom_bar(stat = "identity", position = "fill") +
-  labs(y = "STEVILO", x = "LETO") +
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.title = element_blank());
+ggplot(Izseljevanje_Zenske_Starost, aes(Leto, Zenske, fill = Kategorija)) +
+geom_bar(stat = "identity", position = "fill") +
+labs(y = "STEVILO", x = "LETO") +
+scale_x_continuous(breaks = seq(2011, 2020, 1)) +
+theme(panel.background = element_rect(fill = "white"),
+      panel.grid.major = element_line(color = "black", linetype = "dotted"),
+      legend.title = element_blank());
 
 
 # IZSELJEVANJE MLADEGA IN ZRELEGA PREBIVALSTVA
@@ -39,14 +37,12 @@ starost_spol %>% select(Leto, Zenske, Kategorija) %>%
 # mladega in zrelega prebivalstva. To je predvsem pomembno ce se odseli vec mladih
 # kot zrelih, saj je to zelo "negativen" trend.
  
-
-starost_spol %>% filter(Kategorija %in% c("Mladi", "Zreli")) %>%
-  ggplot(aes(Leto, Moski + Zenske, fill = Kategorija)) +
-  geom_bar(stat='identity', position='dodge') +
-  scale_x_continuous(breaks = seq(2011, 2021, 1)) +
-  scale_y_continuous(breaks = seq(0, 10000, 500)) + 
-  labs(x = "LETA", y = "STEVILA") +
-  theme(panel.background = element_rect(fill = "white"),
+ggplot(Izseljevanje_Mladi_Zreli, aes(Leto, Moski + Zenske, fill = Kategorija)) +
+geom_bar(stat='identity', position='dodge') +
+scale_x_continuous(breaks = seq(2011, 2021, 1)) +
+scale_y_continuous(breaks = seq(0, 10000, 500)) + 
+labs(x = "LETA", y = "STEVILA") +
+theme(panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(color = "black", linetype = "dotted"),
         legend.position = "bottom",
         legend.title = element_blank(),
@@ -54,76 +50,25 @@ starost_spol %>% filter(Kategorija %in% c("Mladi", "Zreli")) %>%
 
 # V naslednjem delu bomo analizirali vsako skupino glede na spol in izobrazbo
 # izpustili bomo staro populacijo saj ni nobenega vidnega trenda
-# zanima nas izbrazbena struktua odseljenega prebivalstva glede na spol in starost 
+# zanima nas izbrazbena struktua odseljenega prebivalstva glede na spol in starost
 
+graf_area <- function(podatek){
+  ggplot(podatek) +
+    geom_area(aes(Leto, value, fill = name), position = "fill",alpha = 0.8, color = "black") + 
+    labs(x = "LETO", y = "DELEZ") +
+    coord_flip() +
+    scale_x_continuous(breaks = seq(2011, 2020, 1)) +
+    theme(panel.background = element_rect(fill = "white"),
+          panel.grid.major = element_line(color = "black", linetype = "dotted"),
+          legend.position = "bottom",
+          legend.title = element_blank(),
+          legend.background = element_rect(color = "grey"));  
+}
 
-# IZSELJEVANJE MLADEGA MOSKEGA PREBIVALSTVA
-
-starost_izobrazba_spol %>% filter(Kategorija == "Mladi") %>%
-  ggplot() +
-  geom_area(aes(Leto, SS_moski), size = 1.5, fill = "blue", alpha = 0.5, col = "black") + 
-  geom_area(aes(Leto, VS_moski), size = 1.5, fill = "green", alpha = 0.6, col = "black") + 
-  geom_area(aes(Leto, OS_moski), size = 1.5, fill = "red",alpha = 0.7, col = "black") + 
-  labs( y = "STEVILO", x = "LETO") +
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
-  scale_y_continuous(breaks = seq(100, 1300, 100)) +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
-
-
-# IZSELJEVANJE MLADEGA ZENSKEGA PREBIVALSTVA
-
-starost_izobrazba_spol %>% filter(Kategorija == "Mladi") %>%
-  ggplot() +
-  geom_area(aes(Leto, SS_zenske), size = 1.5, fill = "blue", alpha = 0.5, col = "black") + 
-  geom_area(aes(Leto, VS_zenske), size = 1.5, fill = "green", alpha = 0.6, col = "black") + 
-  geom_area(aes(Leto, OS_zenske), size = 1.5, fill = "red",alpha = 0.7, col = "black") + 
-  labs( y = "STEVILO", x = "LETO") +
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
-  scale_y_continuous(breaks = seq(100, 1300, 100)) +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
-
-
-# IZSELJEVANJA ZRELEGA MOSKEGA PREBIVALSTVA
-
-starost_izobrazba_spol %>% filter(Kategorija == "Zreli") %>%
-  ggplot() +
-  geom_area(aes(Leto, SS_moski), size = 1.5, fill = "blue", alpha = 0.5, col = "black") + 
-  geom_area(aes(Leto, VS_moski), size = 1.5, fill = "green", alpha = 0.6, col = "black") + 
-  geom_area(aes(Leto, OS_moski), size = 1.5, fill = "red",alpha = 0.7, col = "black") + 
-  labs( y = "STEVILO", x = "LETO") +
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
-  scale_y_continuous(breaks = seq(100, 1300, 100)) +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
-
-
-
-# IZSELJEVANJA ZRELEGA ZENSKEGA PREBIVALSTVA
-
-starost_izobrazba_spol %>% filter(Kategorija == "Zreli") %>%
-  ggplot() +
-  geom_area(aes(Leto, SS_zenske), size = 1.5, fill = "blue", alpha = 0.5, col = "black") + 
-  geom_area(aes(Leto, VS_zenske), size = 1.5, fill = "green", alpha = 0.6, col = "black") + 
-  geom_area(aes(Leto, OS_zenske), size = 1.5, fill = "red",alpha = 0.7, col = "black") + 
-  labs( y = "STEVILO", x = "LETO") +
-  scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
-  scale_y_continuous(breaks = seq(100, 1300, 100)) +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
+graf_area(Izseljevanje_Mladi_Moski) # IZSELJEVANJE MLADEGA MOSKEGA PREBIVALSTVA
+graf_area(Izseljevanje_Mlade_Zenske) # IZSELJEVANJE MLADEGA ZENSKEGA PREBIVALSTVA
+graf_area(Izseljevanje_Zreli_Moski) # IZSELJEVANJA ZRELEGA MOSKEGA PREBIVALSTVA
+graf_area(Izseljevanje_Zrele_Zenske) # IZSELJEVANJA ZRELEGA ZENSKEGA PREBIVALSTVA
 
 
 # V naslednje delu bomo na prvo mesto postavili izobrazbo in zeleli ugotoviti
@@ -135,70 +80,31 @@ starost_izobrazba_spol %>% filter(Kategorija == "Zreli") %>%
 
 starost_izobrazba_spol %>% select(Leto, Kategorija,VS_moski, VS_zenske)
 
+graf <- function(izobrazba1, izobrazba2, naslov){
+  starost_izobrazba_spol %>% filter(Leto %in% c(2011, 2020)) %>%
+    pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
+    filter(name %in% c(izobrazba1, izobrazba2)) %>%
+    unite(izobrazbe, c(name, Kategorija)) %>%
+    ggplot(aes(Leto, value, group = izobrazbe)) +
+    geom_line(aes(color = izobrazbe), size = 2 , alpha = 0.5) +
+    geom_point(aes(color = izobrazbe), size = 4, alpha = 0.5) +
+    theme_bw() +
+    theme(legend.position = "bottom", panel.border = element_blank(), 
+          axis.title.y = element_blank(), axis.text.y = element_blank(),
+          panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(),
+          axis.title.x  = element_blank(), panel.grid.major.x = element_blank(),
+          axis.text.x.top = element_text(size=12), axis.ticks = element_blank(),
+          plot.title  = element_text(size=14, face = "bold", hjust = 0.5),
+          plot.subtitle = element_text(hjust = 0.5), legend.title = element_blank())+
+    scale_x_continuous(breaks = seq(2011, 2020,9)) +
+    geom_text(aes(label = paste0(value)), fontface = "bold", size = 4) +
+    ggtitle(naslov)
+}
 
+graf("VS_moski", "VS_zenske", "VISOKOSOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z VISJEŠOLSKO IZOBRAZBO V DESETLETJU
+graf("SS_moski", "SS_zenske", "SREDNJESOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z SREDNJOŠOLSKO IZOBRAZBO V ZADNJEM DESETLETJU
+graf("OS_moski", "OS_zenske", "OSNOVNOSOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z OSNOVNOŠOLSKO IZOBRAZBO V DESETLETJU
 
-starost_izobrazba_spol %>% filter(Leto %in% c(2011, 2020)) %>%
-  pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
-  filter(name %in% c("VS_moski", "VS_zenske")) %>%
-  unite(izobrazbe, c(name, Kategorija)) %>%
-  ggplot(aes(Leto, value, group = izobrazbe)) +
-  geom_line(aes(color = izobrazbe), size = 2 , alpha = 0.5) +
-  geom_point(aes(color = izobrazbe), size = 4, alpha = 0.5) +
-  theme_bw() +
-  theme(legend.position = "bottom", panel.border = element_blank(), 
-        axis.title.y = element_blank(), axis.text.y = element_blank(),
-        panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(),
-        axis.title.x  = element_blank(), panel.grid.major.x = element_blank(),
-        axis.text.x.top = element_text(size=12), axis.ticks = element_blank(),
-        plot.title  = element_text(size=14, face = "bold", hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5), legend.title = element_blank())+
-  scale_x_continuous(breaks = seq(2011, 2020,9)) +
-  geom_text(aes(label = paste0(value)), fontface = "bold", size = 4) +
-  ggtitle("VISOKOSOLSKA IZOBRAZBA")
-
-
-# IZSELJEVANJA PREBIVALSTVA Z SREDNJOSOLSKO IZOBRAZBO V ZADNJEM DESETLETJU
-
-starost_izobrazba_spol %>% filter(Leto %in% c(2011, 2020)) %>%
-  pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
-  filter(name %in% c("SS_moski", "SS_zenske")) %>%
-  unite(izobrazbe, c(name, Kategorija)) %>%
-  ggplot(aes(Leto, value, group = izobrazbe)) +
-  geom_line(aes(color = izobrazbe), size = 2 , alpha = 0.5) +
-  geom_point(aes(color = izobrazbe), size = 4, alpha = 0.5) +
-  theme_bw() +
-  theme(legend.position = "bottom", panel.border = element_blank(), 
-        axis.title.y = element_blank(), axis.text.y = element_blank(),
-        panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(),
-        axis.title.x  = element_blank(), panel.grid.major.x = element_blank(),
-        axis.text.x.top = element_text(size=12), axis.ticks = element_blank(),
-        plot.title  = element_text(size=14, face = "bold", hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5), legend.title = element_blank())+
-  scale_x_continuous(breaks = seq(2011, 2020,9)) +
-  geom_text(aes(label = paste0(value)), fontface = "bold", size = 4) +
-  ggtitle("SREDNJESOLSKA IZOBRAZBA")
-
-
-# IZSELJEVANJA PREBIVALSTVA Z OSNOVNOSOLSKO IZOBRAZBO V DESETLETJU
-
-starost_izobrazba_spol %>% filter(Leto %in% c(2011, 2020)) %>%
-  pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
-  filter(name %in% c("OS_moski", "OS_zenske")) %>%
-  unite(izobrazbe, c(name, Kategorija)) %>%
-  ggplot(aes(Leto, value, group = izobrazbe)) +
-  geom_line(aes(color = izobrazbe), size = 2 , alpha = 0.5) +
-  geom_point(aes(color = izobrazbe), size = 4, alpha = 0.5) +
-  theme_bw() +
-  theme(legend.position = "bottom", panel.border = element_blank(), 
-        axis.title.y = element_blank(), axis.text.y = element_blank(),
-        panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(),
-        axis.title.x  = element_blank(), panel.grid.major.x = element_blank(),
-        axis.text.x.top = element_text(size=12), axis.ticks = element_blank(),
-        plot.title  = element_text(size=14, face = "bold", hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5), legend.title = element_blank())+
-  scale_x_continuous(breaks = seq(2011, 2020,9)) +
-  geom_text(aes(label = paste0(value)), fontface = "bold", size = 4) +
-  ggtitle("OSNOVNOSOLSKA IZOBRAZBA")
 
 # Na koncu slovenske statistike pa se sledi razlika po aktivnosti. Zanima nas
 # ali se izseli vec ljudi, ki so ze delovno aktivni in iscejo boljso placo ali
@@ -318,6 +224,7 @@ SIob_fort %>%
     panel.grid.minor = element_blank(),
     plot.background = element_blank()
   );
+
 
 
 
