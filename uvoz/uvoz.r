@@ -7,7 +7,7 @@ sl <- locale("sl", decimal_mark=",", grouping_mark=".");
 
 Starost_Evropa <- read.csv(
   "podatki/starost_tujina.csv",
-  locale = locale(encoding = "Windows-1250")
+  encoding = "Windows-1250"
 )
 
 drzave = c("Avstrija", "Hrvaska", "Nemcija", "Italija", "Svica", "Zdruzeno.kraljestvo")
@@ -54,21 +54,21 @@ starost_evropa <- full_join(full_join(w1,w2),w3)
                       
 Evropa <- read.csv(
   "podatki/starost_EU.csv",
-  locale = locale(encoding = "Windows-1250")
+  encoding = "Windows-1250"
 )
 
 evropa <- Evropa %>% select(X, Skupno)
-colnames(evropa) <- c("DRZAVE", "SKUPNO")
+colnames(evropa) <- c("region", "SKUPNO")
 
-evropa <- evropa %>% pivot_longer(cols = names(.)[-1], names_to = "x", values_to = "SKUPNO") %>%
-  select(-x)
+mapdata = left_join(map_data("world"), evropa, by="region") %>%
+  filter(!is.na(SKUPNO));
+
  
-                                           
 # Tabela, ki prikazuje stevilke odseljevanja iz vsake obcine
  
 Obcine_Odseljeni <- read.csv(
   "podatki/obcine.csv", 
-  locale = locale(encoding = "Windows-1250")
+  encoding = "Windows-1250"
 )
 
 Obcine_Odseljeni %>% select(X, Skupaj)
@@ -93,7 +93,7 @@ SIob_fort <- left_join(SIob_fort, delez, by = "id");
 
 Starost_Izobrazba_Spol = read.csv(
   "podatki/Starost_Izobrazba_splosno.csv",
-  locale = locale(encoding = "Windows-1250")
+  encoding = "Windows-1250"
 )
 
 a1 = full_join(
@@ -113,30 +113,7 @@ a3 = full_join(
 
 starost_izobrazba_spol = full_join(full_join(a1,a2),a3)
 
-Izseljevanje_Mladi_Moski <- starost_izobrazba_spol %>%
-  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Mladi") %>%
-  filter(name %in% c("OS_moski","SS_moski","VS_moski"))
-
-Izseljevanje_Mlade_Zenske <- starost_izobrazba_spol %>%
-  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Mladi") %>%
-  filter(name %in% c("OS_zenske","SS_zenske","VS_zenske"))
-
-Izseljevanje_Zreli_Moski <- starost_izobrazba_spol %>%
-  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Zreli") %>%
-  filter(name %in% c("OS_moski","SS_moski","VS_moski"))
-
-Izseljevanje_Mlade_Zenske <- starost_izobrazba_spol %>%
-  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Zreli") %>%
-  filter(name %in% c("OS_zenske","SS_zenske","VS_zenske"))
-                                
-
-# Tabela, ki prikazuje stevilke odseljevanja iz Slovenije 
-# glede na starost in spol    
-
-Starost_Spol = read_csv(
-  "podatki/starost_spol.csv",
-  locale = sl
-)
+# Tabele za vizualizacijo
 
 Tabela <- function(a, b, value, detoteka) {
   detoteka[a:b,1:length(detoteka)] %>%
@@ -149,6 +126,32 @@ Tabela <- function(a, b, value, detoteka) {
     arrange(Kategorija, Leto)
 }
 
+Izseljevanje_Mladi_Moski <- starost_izobrazba_spol %>%
+  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Mladi") %>%
+  filter(name %in% c("OS_moski","SS_moski","VS_moski"))
+
+Izseljevanje_Mlade_Zenske <- starost_izobrazba_spol %>%
+  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Mladi") %>%
+  filter(name %in% c("OS_zenske","SS_zenske","VS_zenske"))
+
+Izseljevanje_Zreli_Moski <- starost_izobrazba_spol %>%
+  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Zreli") %>%
+  filter(name %in% c("OS_moski","SS_moski","VS_moski"))
+
+Izseljevanje_Zrele_Zenske <- starost_izobrazba_spol %>%
+  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Zreli") %>%
+  filter(name %in% c("OS_zenske","SS_zenske","VS_zenske"))
+                                
+
+# Tabela, ki prikazuje stevilke odseljevanja iz Slovenije 
+# glede na starost in spol    
+
+Starost_Spol = read_csv(
+  "podatki/starost_spol.csv",
+  locale = sl
+)
+
+# Tabele za vizualizacijo
 
 Izseljevanje_Moski_Starost  <- Tabela(1,10, "Moski", Starost_Spol)
 
@@ -159,13 +162,12 @@ Izseljevanje_Mladi_Zreli <- full_join(Izseljevanje_Moski_Starost,
   filter(Kategorija %in% c("Mladi", "Zreli"))
 
 
-
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije
 # glede na aktivnost(zaposlen, nezaposlen) in spol
 
 Aktivnost = read.csv(
   "podatki/aktivnost_splosno.csv",
-  locale = locale(encoding = "Windows-1250")
+  encoding = "Windows-1250"
 );
 
 Zaposleni <- function(a,b,value) {
@@ -194,8 +196,4 @@ aktivnost_temp2 = full_join(full_join(Mladi_nezaposleni, Zreli_nezaposleni) , fu
 
 aktivnost = full_join(akti_temp1, akti_temp2)
 
-
-starost_izobrazba_spol[1:length(starost_izobrazba_spol), 1:5] %>%
-  pivot_longer(cols = names(.)[-1:-2]) %>% filter(Kategorija == "Mladi") %>%
-  arrange(name) %>% ggplot() + geom_area(aes(Leto, value, fill = name))
                                 
