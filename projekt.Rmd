@@ -113,7 +113,7 @@ V tem delu bom predstavil podatke v obliki grafov, histogramov, tortnih diagramo
 ### Odseljevanje moskega prebivalstva po starosti
 
 ```{r hist1, fig.align='left', out.width="70%", out.height="30%"}
-print(Moski_starost)
+print(Izseljevanje_Moski_Starost_Graf)
 ```
 
 <font size = "4">
@@ -125,7 +125,7 @@ Zgornji histogram prikazuje kako se je skozi leto spreminjala starostna sestava 
 ### Odseljevanje zenskega prebivalstva po starosti
 
 ```{r hist2, fig.align='left', out.width="70%", out.height="30%"}
-print(Zenske_starost)
+print(Izseljevanje_Zenske_Starost_Graf)
 ```
 
 <font size = "4">
@@ -137,7 +137,7 @@ Pri zenskem spolu pa je ravno obratno. Ze nekaj let se izseljuje veliko vec mlad
 ### Odseljevanje mladega in zrelega prebivalstva
 
 ```{r hist3, fig.align='left', out.width="70%", out.height="30%"}
-print(Mladi_Zreli)
+print(Izseljevanje_Mladi_Zreli_Graf)
 ```
 
 <font size = "4">
@@ -146,23 +146,11 @@ Ta histogram na splosno prikazuje kar sta prikazovala zgornja histograma, le da 
 
 </br>
 
-### Povprecna starost odseljevanja glede na spol
-
-```{r graf1, fig.align='left', out.width="75%", out.height="30%"}
-print(Povprecje)
-```
-
-<font size = "4">
-Graf prikazuje povprecno starost odseljevanja za oba spola. Ocitno je, da se zenske zadnje desetletje v povprecju  odseljujejo veliko prej kot moski. Najvecja razlika je bila leta 2016 ko je znasala dobrih 4 let. Po tem se je postopoma znizevala do leta 2020. Ce se bo trend ohranil bo kmalu povprecna starost skoraj enaka. To nakazuje, da se odseljuje vse vec mladih moskih in vec zensk zrele starostne skupine.
-</font>
-  
-</br>
-
 ### Odseljevanje mladega prebivalstva glede na spol
 
 ```{r graf2, figures-side, fig.show="hold", out.width="50%"}
-print(Mladi_moski)
-print(Mlade_zenske)
+print(Izseljevanje_Mladi_Moski_Graf)
+print(Izseljevanje_Mlade_Zenske_Graf)
 ```
 
 <font size = "4">
@@ -178,8 +166,8 @@ Pri zenskam je cisto drugace. Odseljenih z osnovnosolsko izobrazbo skoraj ni. Ta
 ### Odseljevanje zrelega prebivalstva glede na spol
 
 ```{r graf3, figures-side, fig.show="hold", out.width="50%"}
-print(Zreli_moski)
-print(Zrele_zenske)
+print(Izseljevanje_Zreli_Moski_Graf)
+print(Izseljevanje_Zrele_Zenske_Graf)
 ```
 
 <font size = "4">
@@ -194,12 +182,12 @@ Pri moskih je graf podoben. Vidno najvec s srednjesolsko, ostali pa podobno. Pri
 </br>
 
 ```{r tortni1, figures-side, fig.show="hold", out.width="50%"}
-print(VS)
-print(SS)
+print(VS_graf)
+print(SS_graf)
 ```
 
 ```{r tortni2, fig.align='center',out.width="50%"}
-print(OS)
+print(OS_graf)
 ```
 
 <font size = "4">
@@ -219,8 +207,8 @@ Na koncu pa se osnovnosolska. Tukaj je najvec mladih moskih, potem pa so ostali 
 </br>
 
 ```{r graf4, figures-side, fig.show="hold", out.width="50%"}
-print(plot2)
-print(plot1)
+print(Aktivni_Graf)
+print(Neaktivni_Graf)
 ```
 
 <font size = "4">
@@ -249,7 +237,7 @@ Svica, Velika Britanija in Hrvaska.
 </br>
 
 ```{r graf5, out.width="100%"}
-grid.arrange(plot3, plot4, plot5, plot6, plot7, plot8, ncol = 3, nrow = 2);
+print(Drzave_Graf);
 ```
 
 <font size = "4">
