@@ -11,7 +11,7 @@
 
 # IZSELJEVANJE MOSKEGA PREBIVALSTVA PO STAROSTI
 
-ggplot(Izseljevanje_Moski_Starost, aes(Leto, Moski, fill = Kategorija)) +
+Izseljevanje_Moski_Starost_Graf <- ggplot(Izseljevanje_Moski_Starost, aes(Leto, Moski, fill = Kategorija)) +
 geom_bar(stat = "identity", position = "fill") +
 labs(y = "STEVILO", x = "LETO") +
 scale_x_continuous(breaks = seq(2011, 2020, 1)) +
@@ -22,7 +22,7 @@ theme(panel.background = element_rect(fill = "white"),
 
 # IZSELJEVANJA ZENSKEGA PREBIVALSTVA PO STAROSTI
 
-ggplot(Izseljevanje_Zenske_Starost, aes(Leto, Zenske, fill = Kategorija)) +
+Izseljevanje_Zenske_Starost_Graf <- ggplot(Izseljevanje_Zenske_Starost, aes(Leto, Zenske, fill = Kategorija)) +
 geom_bar(stat = "identity", position = "fill") +
 labs(y = "STEVILO", x = "LETO") +
 scale_x_continuous(breaks = seq(2011, 2020, 1)) +
@@ -37,7 +37,7 @@ theme(panel.background = element_rect(fill = "white"),
 # mladega in zrelega prebivalstva. To je predvsem pomembno ce se odseli vec mladih
 # kot zrelih, saj je to zelo "negativen" trend.
  
-ggplot(Izseljevanje_Mladi_Zreli, aes(Leto, Moski + Zenske, fill = Kategorija)) +
+Izseljevanje_Mladi_Zreli_Graf <- ggplot(Izseljevanje_Mladi_Zreli, aes(Leto, Moski + Zenske, fill = Kategorija)) +
 geom_bar(stat='identity', position='dodge') +
 scale_x_continuous(breaks = seq(2011, 2021, 1)) +
 scale_y_continuous(breaks = seq(0, 10000, 500)) + 
@@ -65,10 +65,10 @@ graf_area <- function(podatek){
           legend.background = element_rect(color = "grey"));  
 }
 
-graf_area(Izseljevanje_Mladi_Moski) # IZSELJEVANJE MLADEGA MOSKEGA PREBIVALSTVA
-graf_area(Izseljevanje_Mlade_Zenske) # IZSELJEVANJE MLADEGA ZENSKEGA PREBIVALSTVA
-graf_area(Izseljevanje_Zreli_Moski) # IZSELJEVANJA ZRELEGA MOSKEGA PREBIVALSTVA
-graf_area(Izseljevanje_Zrele_Zenske) # IZSELJEVANJA ZRELEGA ZENSKEGA PREBIVALSTVA
+Izseljevanje_Mladi_Moski_Graf <- graf_area(Izseljevanje_Mladi_Moski) # IZSELJEVANJE MLADEGA MOSKEGA PREBIVALSTVA
+Izseljevanje_Mlade_Zenske_Graf <- graf_area(Izseljevanje_Mlade_Zenske) # IZSELJEVANJE MLADEGA ZENSKEGA PREBIVALSTVA
+Izseljevanje_Zreli_Moski_Graf <- graf_area(Izseljevanje_Zreli_Moski) # IZSELJEVANJA ZRELEGA MOSKEGA PREBIVALSTVA
+Izseljevanje_Zrele_Zenske_Graf <- graf_area(Izseljevanje_Zrele_Zenske) # IZSELJEVANJA ZRELEGA ZENSKEGA PREBIVALSTVA
 
 
 # V naslednje delu bomo na prvo mesto postavili izobrazbo in zeleli ugotoviti
@@ -101,9 +101,9 @@ graf <- function(izobrazba1, izobrazba2, naslov){
     ggtitle(naslov)
 }
 
-graf("VS_moski", "VS_zenske", "VISOKOSOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z VISJEŠOLSKO IZOBRAZBO V DESETLETJU
-graf("SS_moski", "SS_zenske", "SREDNJESOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z SREDNJOŠOLSKO IZOBRAZBO V ZADNJEM DESETLETJU
-graf("OS_moski", "OS_zenske", "OSNOVNOSOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z OSNOVNOŠOLSKO IZOBRAZBO V DESETLETJU
+VS_Grad <- graf("VS_moski", "VS_zenske", "VISOKOSOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z VISJEŠOLSKO IZOBRAZBO V DESETLETJU
+SS_Grad <- graf("SS_moski", "SS_zenske", "SREDNJESOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z SREDNJOŠOLSKO IZOBRAZBO V ZADNJEM DESETLETJU
+OS_Grad <- graf("OS_moski", "OS_zenske", "OSNOVNOSOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z OSNOVNOŠOLSKO IZOBRAZBO V DESETLETJU
 
 
 # Na koncu slovenske statistike pa se sledi razlika po aktivnosti. Zanima nas
@@ -114,7 +114,7 @@ graf("OS_moski", "OS_zenske", "OSNOVNOSOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVAL
 
 # ZAPOSLENO PREBIVALSTVO
 
-aktivnost %>% filter(STATUS == "Zaposleno") %>%
+Aktivni_Graf <- aktivnost %>% filter(STATUS == "Zaposleno") %>%
   pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
   ggplot() + geom_line(aes(Leto, value, color = name), size = 1.5, alpha = 0.75) +
   geom_point(aes(Leto, value, color = name), size = 4, alpha = 0.5) +
@@ -129,7 +129,7 @@ aktivnost %>% filter(STATUS == "Zaposleno") %>%
 
 # NEZAPOSLENO PREBIVALSTVO
 
-aktivnost %>% filter(STATUS == "Nezaposleno") %>%
+Neaktivni_Graf <- aktivnost %>% filter(STATUS == "Nezaposleno") %>%
   pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
   ggplot() + geom_line(aes(Leto, value, color = name), size = 1.5, alpha = 0.75) +
   geom_point(aes(Leto, value, color = name), size = 4, alpha = 0.5) +
@@ -153,10 +153,7 @@ aktivnost %>% filter(STATUS == "Nezaposleno") %>%
 # Z zemljevidom Evrope bomo prikazali v katere drzave se izseli najvec Slovencev
 
 
-mapdata = left_join(map_data("world"), evropa, by="region") %>%
-  filter(!is.na(mapdata$SKUPNO));
-
-ggplot(mapdata, aes(x = long, y = lat, group = group)) +
+Evropa_map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill = stevilo), color = "black", show.legend = FALSE) + 
   scale_fill_gradient(low = "yellow", high = "red") +
   theme(
@@ -182,7 +179,7 @@ ggplot(mapdata, aes(x = long, y = lat, group = group)) +
 # Zelena <- mladi, Rdeca <- zreli, Modra <- stari
 
 
-starost_evropa %>% pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
+Drzave_Graf <- starost_evropa %>% pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
   ggplot() + geom_line(aes(Leto, value, col = name), size = 1.5, alpha = 0.75) +
   geom_point(aes(Leto, value, col = name), size = 3, alpha = 0.5) +
   facet_wrap(. ~ DRZAVE , ncol = 3) +
@@ -206,7 +203,7 @@ starost_evropa %>% pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
 
 # Traja nekaj sekund, da se nalozi 
 
-SIob_fort %>%
+Obcine <- SIob_fort %>%
   ggplot(aes(long, lat, group = group)) +
   geom_path(size = 0.01) +
   geom_polygon(aes(fill = delez), color = "black", show.legend = FALSE) +
@@ -223,7 +220,7 @@ SIob_fort %>%
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     plot.background = element_blank()
-  );
+)
 
 
 
