@@ -13,7 +13,7 @@
 
 Izseljevanje_Moski_Starost_Graf <- ggplot(Izseljevanje_Moski_Starost, aes(Leto, Moski, fill = Kategorija)) +
 geom_bar(stat = "identity", position = "fill") +
-labs(y = "STEVILO", x = "LETO") +
+labs(y = "ŠTEVILO", x = "LETO") +
 scale_x_continuous(breaks = seq(2011, 2020, 1)) +
 theme(panel.background = element_rect(fill = "white"),
       panel.grid.major = element_line(color = "black", linetype = "dotted"),
@@ -24,7 +24,7 @@ theme(panel.background = element_rect(fill = "white"),
 
 Izseljevanje_Zenske_Starost_Graf <- ggplot(Izseljevanje_Zenske_Starost, aes(Leto, Zenske, fill = Kategorija)) +
 geom_bar(stat = "identity", position = "fill") +
-labs(y = "STEVILO", x = "LETO") +
+labs(y = "ŠTEVILO", x = "LETO") +
 scale_x_continuous(breaks = seq(2011, 2020, 1)) +
 theme(panel.background = element_rect(fill = "white"),
       panel.grid.major = element_line(color = "black", linetype = "dotted"),
@@ -41,7 +41,7 @@ Izseljevanje_Mladi_Zreli_Graf <- ggplot(Izseljevanje_Mladi_Zreli, aes(Leto, Mosk
 geom_bar(stat='identity', position='dodge') +
 scale_x_continuous(breaks = seq(2011, 2021, 1)) +
 scale_y_continuous(breaks = seq(0, 10000, 500)) + 
-labs(x = "LETA", y = "STEVILA") +
+labs(x = "LETA", y = "ŠTEVILO") +
 theme(panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(color = "black", linetype = "dotted"),
         legend.position = "bottom",
@@ -55,7 +55,7 @@ theme(panel.background = element_rect(fill = "white"),
 graf_area <- function(podatek){
   ggplot(podatek) +
     geom_area(aes(Leto, value, fill = name), position = "fill",alpha = 0.8, color = "black") + 
-    labs(x = "LETO", y = "DELEZ") +
+    labs(x = "LETO", y = "DELEŽ") +
     coord_flip() +
     scale_x_continuous(breaks = seq(2011, 2020, 1)) +
     theme(panel.background = element_rect(fill = "white"),
@@ -101,9 +101,9 @@ graf <- function(izobrazba1, izobrazba2, naslov){
     ggtitle(naslov)
 }
 
-VS_Grad <- graf("VS_moski", "VS_zenske", "VISOKOSOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z VISJEŠOLSKO IZOBRAZBO V DESETLETJU
-SS_Grad <- graf("SS_moski", "SS_zenske", "SREDNJESOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z SREDNJOŠOLSKO IZOBRAZBO V ZADNJEM DESETLETJU
-OS_Grad <- graf("OS_moski", "OS_zenske", "OSNOVNOSOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z OSNOVNOŠOLSKO IZOBRAZBO V DESETLETJU
+VS_Graf <- graf("VS_moski", "VS_zenske", "VISOKOŠOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z VISJEŠOLSKO IZOBRAZBO V DESETLETJU
+SS_Graf <- graf("SS_moski", "SS_zenske", "SREDNJEŠOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z SREDNJOŠOLSKO IZOBRAZBO V ZADNJEM DESETLETJU
+OS_Graf <- graf("OS_moski", "OS_zenske", "OSNOVNOŠOLSKA IZOBRAZBA") # IZSELJEVANJA PREBIVALSTVA Z OSNOVNOŠOLSKO IZOBRAZBO V DESETLETJU
 
 
 # Na koncu slovenske statistike pa se sledi razlika po aktivnosti. Zanima nas
@@ -114,11 +114,10 @@ OS_Grad <- graf("OS_moski", "OS_zenske", "OSNOVNOSOLSKA IZOBRAZBA") # IZSELJEVAN
 
 # ZAPOSLENO PREBIVALSTVO
 
-Aktivni_Graf <- aktivnost %>% filter(STATUS == "Zaposleno") %>%
-  pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
-  ggplot() + geom_line(aes(Leto, value, color = name), size = 1.5, alpha = 0.75) +
-  geom_point(aes(Leto, value, color = name), size = 4, alpha = 0.5) +
-  labs( y = "STEVILO", x = "LETO") +
+Aktivni_Graf <- Aktivnost %>% 
+  ggplot() + geom_line(aes(Leto, Zaposleno, color = Status), size = 1.5, alpha = 0.75) +
+  geom_point(aes(Leto, Zaposleno, color = Status), size = 4, alpha = 0.5) +
+  labs( y = "ŠTEVILO", x = "LETO") +
   scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
   scale_y_continuous(breaks = seq(100, 1100, 100)) +
   theme(panel.background = element_rect(fill = "white"),
@@ -129,11 +128,10 @@ Aktivni_Graf <- aktivnost %>% filter(STATUS == "Zaposleno") %>%
 
 # NEZAPOSLENO PREBIVALSTVO
 
-Neaktivni_Graf <- aktivnost %>% filter(STATUS == "Nezaposleno") %>%
-  pivot_longer(cols = names(.)[-1:-2]) %>% arrange(name) %>%
-  ggplot() + geom_line(aes(Leto, value, color = name), size = 1.5, alpha = 0.75) +
-  geom_point(aes(Leto, value, color = name), size = 4, alpha = 0.5) +
-  labs( y = "STEVILO", x = "LETO") +
+Neaktivni_Graf <- Aktivnost %>% 
+  ggplot() + geom_line(aes(Leto, Nezaposleno , color = Status), size = 1.5, alpha = 0.75) +
+  geom_point(aes(Leto, Nezaposleno , color = Status), size = 4, alpha = 0.5) +
+  labs( y = "ŠTEVILO", x = "LETO") +
   scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
   scale_y_continuous(breaks = seq(0, 200, 25)) +
   theme(panel.background = element_rect(fill = "white"),
@@ -154,7 +152,7 @@ Neaktivni_Graf <- aktivnost %>% filter(STATUS == "Nezaposleno") %>%
 
 
 Evropa_map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
-  geom_polygon(aes(fill = stevilo), color = "black", show.legend = FALSE) + 
+  geom_polygon(aes(fill = SKUPNO), color = "black", show.legend = FALSE) + 
   scale_fill_gradient(low = "yellow", high = "red") +
   theme(
     axis.text.x = element_blank(),
@@ -191,36 +189,6 @@ Drzave_Graf <- starost_evropa %>% pivot_longer(cols = names(.)[-1:-2]) %>% arran
         axis.title.y = element_blank());
 
 
-# ---------------------------------------------------------------------------- #
-# ---------------------- SLOVENSKA OBCINSKA STATISTIKA ----------------------- #
-# ---------------------------------------------------------------------------- #
-
-# V zadnjem delu bomo se prikazali delez odseljenih glede na stevilo, prebivalstva
-# za vsako obcino. Tako bomo videli katera regija se najbolj odseljuje.
-# nimam .SHP file za statisticen regije :(
-
-# VIZUALIZACIJA SLOVENSKIH OBCIN
-
-# Traja nekaj sekund, da se nalozi 
-
-Obcine <- SIob_fort %>%
-  ggplot(aes(long, lat, group = group)) +
-  geom_path(size = 0.01) +
-  geom_polygon(aes(fill = delez), color = "black", show.legend = FALSE) +
-  scale_fill_gradient(low = "yellow", high = "red") +
-  theme(
-    axis.text.x = element_blank(),
-    axis.text.y = element_blank(),
-    axis.line = element_blank(),
-    axis.ticks = element_blank(),
-    axis.title.x = element_blank(),
-    axis.title.y = element_blank(),
-    panel.background = element_blank(),
-    panel.border = element_blank(),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank(),
-    plot.background = element_blank()
-)
 
 
 
