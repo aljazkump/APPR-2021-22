@@ -73,28 +73,6 @@ mapdata = left_join(map_data("world"), evropa, by="region") %>%
   filter(!is.na(SKUPNO));
 
 
-# Tabela, ki prikazuje stevilke odseljevanja iz vsake obcine
-
-Obcine_Odseljeni <- read.csv(
-  "podatki/obcine.csv", 
-  encoding = "Windows-1250"
-)
-
-Obcine_Odseljeni %>% select(X, Skupaj)
-colnames(Obcine_Odseljeni) <- c("OB_UIME", "SKUPAJ")
-Obcine_Odseljeni <- Obcine_Odseljeni[1:212, 1:2]
-
-
-# Tabela za kasnejso vizualizacijo obcin na zemljevidu 
-
-SIob <- readOGR("podatki/OB.shp", layer = "OB", encoding = "Windows-1250");
-
-SIob_fort <- SIob %>%
-  fortify("region");
-
-SIob_fort <- left_join(SIob_fort, Obcine_Odseljeni);
-
-
 # Tabela, ki prikazuje stevilke odseljevanja iz Slovenije 
 # glede na izobrazbo, spol in starost 
 
