@@ -18,7 +18,7 @@ Tabela <- function(a, b, value, detoteka) {
 
 Starost_Evropa <- read.csv(
   "podatki/starost_tujina.csv",
-  encoding = "Windows-1250"
+  fileEncoding = "Windows-1250"
 )
 
 Starost_Evropa_temp <- Starost_Evropa %>% select(Leto, Avstrija, Hrvaska, Svica, Italija, Zdruzeno.kraljestvo, Nemcija)
@@ -63,7 +63,7 @@ starost_evropa <- full_join(full_join(w1,w2),w3)
 
 Evropa <- read.csv(
   "podatki/starost_EU.csv",
-  encoding = "Windows-1250"
+  fileEncoding = "Windows-1250"
 )
 
 evropa <- Evropa %>% select(X, Skupno)
@@ -78,7 +78,7 @@ mapdata = left_join(map_data("world"), evropa, by="region") %>%
 
 Starost_Izobrazba_Spol = read.csv(
   "podatki/Starost_Izobrazba_splosno.csv",
-  encoding = "Windows-1250"
+  fileEncoding = "Windows-1250"
 )
 
 a1 = full_join(
@@ -122,6 +122,7 @@ Izseljevanje_Zrele_Zenske <- starost_izobrazba_spol %>%
 
 Starost_Spol <- read.csv(
   "podatki/starost_spol.csv",
+  fileEncoding = "Windows-1250"
 )
 
 # Tabele za vizualizacijo
@@ -140,7 +141,7 @@ Izseljevanje_Mladi_Zreli <- full_join(Izseljevanje_Moski_Starost,
 
 Aktivnost = read.csv(
   "podatki/aktivnost_splosno.csv",
-  encoding = "Windows-1250"
+  fileEncoding = "Windows-1250"
 );
 
 Aktivnost$Status <- rep(c("Mladi", "Zreli", "Mlade", "Zrele"), each = 10)
