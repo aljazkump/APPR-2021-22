@@ -145,10 +145,11 @@ Aktivnost = read.csv(
   fileEncoding = "Windows-1250"
 )
 
-Aktivnost <- tibble(Aktivnost)
-Aktivnost$Status <- rep(c("Mladi", "Zreli", "Mlade", "Zrele"), each = 10)
+Zaposleni <- Aktivnost %>% pivot_longer(cols = names(.)[-1]) %>%
+  filter(name %in% c("mladi_z", "mlade_z", "zreli_z", "zrele_z"))
 
-
+Nezaposleni <- Aktivnost %>% pivot_longer(cols = names(.)[-1]) %>%
+  filter(name %in% c("mladi_n", "mlade_n", "zreli_n", "zrele_n"))
 
 
 
