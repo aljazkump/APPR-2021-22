@@ -21,6 +21,7 @@ Starost_Evropa <- read.csv(
   fileEncoding = "Windows-1250"
 )
 
+
 Starost_Evropa_temp <- Starost_Evropa %>% select(Leto, Avstrija, Hrvaska, Svica, Italija, Zdruzeno.kraljestvo, Nemcija)
 
 Tabela_EU_Mladi <- function(drzava) {
@@ -142,11 +143,13 @@ Izseljevanje_Mladi_Zreli <- full_join(Izseljevanje_Moski_Starost,
 Aktivnost = read.csv(
   "podatki/aktivnost_splosno.csv",
   fileEncoding = "Windows-1250"
-);
+)
+
+Aktivnost <- tibble(Aktivnost)
 
 Aktivnost$Status <- rep(c("Mladi", "Zreli", "Mlade", "Zrele"), each = 10)
 
-Aktivnost <- tibble(Aktivnost)
+
 
 
 
