@@ -145,9 +145,10 @@ Aktivnost = read.csv(
   fileEncoding = "Windows-1250"
 )
 
+Aktivnost <- tibble(Aktivnost)
 Aktivnost$Status <- rep(c("Mladi", "Zreli", "Mlade", "Zrele"), each = 10)
 
-Aktivnost <- tibble(Aktivnost)
+
 
 
 
