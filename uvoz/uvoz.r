@@ -18,11 +18,11 @@ Tabela <- function(a, b, value, detoteka) {
 
 Starost_Evropa <- read.csv(
   "podatki/starost_tujina.csv",
-  fileEncoding = "Windows-1250"
+  fileEncoding = "UTF-8"
 )
 
 
-Starost_Evropa_temp <- Starost_Evropa %>% select(Leto, Avstrija, Hrvaška, Švica, Italija, Združeno.kraljestvo, Nemčija)
+Starost_Evropa_temp <- Starost_Evropa %>% select(Leto, Avstrija, Hrvaska, Svica, Italija, Zdruzeno.kraljestvo, Nemcija)
 
 Tabela_EU_Mladi <- function(drzava) {
   Starost_Evropa_temp[1:10, 1:length(Starost_Evropa_temp)] %>% 
@@ -42,19 +42,19 @@ Tabela_EU_Stari <- function(drzava) {
                  names_to = "DRZAVE", values_to = "STARI") %>% filter(DRZAVE == drzava)
 }
 
-f1 = full_join(Tabela_EU_Mladi("Avstrija"), Tabela_EU_Mladi("Hrvaška"))
-f2 = full_join(Tabela_EU_Mladi("Nemčija"), Tabela_EU_Mladi("Italija"))
-f3 = full_join(Tabela_EU_Mladi("Švica"), Tabela_EU_Mladi("Združeno.kraljestvo"))
+f1 = full_join(Tabela_EU_Mladi("Avstrija"), Tabela_EU_Mladi("Hrvaska"))
+f2 = full_join(Tabela_EU_Mladi("Nemcija"), Tabela_EU_Mladi("Italija"))
+f3 = full_join(Tabela_EU_Mladi("Svica"), Tabela_EU_Mladi("Zdruzeno.kraljestvo"))
 w1 = full_join(full_join(f1, f2), f3)
 
-f4 = full_join(Tabela_EU_Zreli("Avstrija"), Tabela_EU_Zreli("Hrvaška"))
-f5 = full_join(Tabela_EU_Zreli("Nemčija"), Tabela_EU_Zreli("Italija"))
-f6 = full_join(Tabela_EU_Zreli("Švica"), Tabela_EU_Zreli("Združeno.kraljestvo"))
+f4 = full_join(Tabela_EU_Zreli("Avstrija"), Tabela_EU_Zreli("Hrvaska"))
+f5 = full_join(Tabela_EU_Zreli("Nemcija"), Tabela_EU_Zreli("Italija"))
+f6 = full_join(Tabela_EU_Zreli("Svica"), Tabela_EU_Zreli("Zdruzeno.kraljestvo"))
 w2 = full_join(full_join(f4, f5), f6)
 
-f7 = full_join(Tabela_EU_Stari("Avstrija"), Tabela_EU_Stari("Hrvaška"))
-f8 = full_join(Tabela_EU_Stari("Nemčija"), Tabela_EU_Stari("Italija"))
-f9 = full_join(Tabela_EU_Stari("Švica"), Tabela_EU_Stari("Združeno.kraljestvo"))
+f7 = full_join(Tabela_EU_Stari("Avstrija"), Tabela_EU_Stari("Hrvaska"))
+f8 = full_join(Tabela_EU_Stari("Nemcija"), Tabela_EU_Stari("Italija"))
+f9 = full_join(Tabela_EU_Stari("Svica"), Tabela_EU_Stari("Zdruzeno.kraljestvo"))
 w3 = full_join(full_join(f7, f8), f9)
 
 starost_evropa <- full_join(full_join(w1,w2),w3)
