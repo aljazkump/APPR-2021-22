@@ -207,7 +207,7 @@ Zgornja grafa prikazujeta aktivno(zaposleno) in neaktivno(nezaposleno) glede na 
 
 ### Vizualizacija odseljevanja v evropske drzave
 
-```{r map1, out.width="75%", out.height="40%", fig.align='left'}
+```{r map1, out.width="75%", out.height="50%", fig.align='left'}
 print(Evropa_map)
 ```
 
