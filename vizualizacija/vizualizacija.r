@@ -114,9 +114,9 @@ OS_Graf <- graf("OS_moski", "OS_zenske", "OSNOVNOŠOLSKA IZOBRAZBA") # IZSELJEVA
 
 # ZAPOSLENO PREBIVALSTVO
 
-Aktivni_Graf <- Aktivnost %>% 
-  ggplot() + geom_line(aes(Leto, Zaposleno, color = Status), size = 1.5, alpha = 0.75) +
-  geom_point(aes(Leto, Zaposleno, color = Status), size = 4, alpha = 0.5) +
+Aktivni_Graf <- Zaposleni %>% 
+  ggplot() + geom_line(aes(Leto, value, color = name), size = 1.5, alpha = 0.75) +
+  geom_point(aes(Leto, value, color = name), size = 4, alpha = 0.5) +
   labs( y = "ŠTEVILO", x = "LETO") +
   scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
   scale_y_continuous(breaks = seq(100, 1100, 100)) +
@@ -128,9 +128,9 @@ Aktivni_Graf <- Aktivnost %>%
 
 # NEZAPOSLENO PREBIVALSTVO
 
-Neaktivni_Graf <- Aktivnost %>% 
-  ggplot() + geom_line(aes(Leto, Nezaposleno , color = Status), size = 1.5, alpha = 0.75) +
-  geom_point(aes(Leto, Nezaposleno , color = Status), size = 4, alpha = 0.5) +
+Neaktivni_Graf <- Nezaposleni %>% 
+  ggplot() + geom_line(aes(Leto, value , color = name), size = 1.5, alpha = 0.75) +
+  geom_point(aes(Leto, value , color = name), size = 4, alpha = 0.5) +
   labs( y = "ŠTEVILO", x = "LETO") +
   scale_x_continuous(breaks = seq(2011, 2020, 1)) + 
   scale_y_continuous(breaks = seq(0, 200, 25)) +
