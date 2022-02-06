@@ -22,7 +22,7 @@ Starost_Evropa <- read.csv(
 )
 
 
-Starost_Evropa_temp <- Starost_Evropa %>% select(Leto, Avstrija, Hrvaska, Svica, Italija, Zdruzeno.kraljestvo, Nemcija)
+Starost_Evropa_temp <- Starost_Evropa %>% select(Leto, Avstrija, Hrvaška, Švica, Italija, Združeno.kraljestvo, Nemčija)
 
 Tabela_EU_Mladi <- function(drzava) {
   Starost_Evropa_temp[1:10, 1:length(Starost_Evropa_temp)] %>% 
