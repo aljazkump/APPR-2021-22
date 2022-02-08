@@ -1,0 +1,1626 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN"    "http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd" [
+  <!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+  <!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+  <!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+  <!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+  <!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+  <!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+]>
+<svg>
+<variableSets  xmlns="&ns_vars;">
+  <variableSet  varSetName="binding1" locked="none">
+    <variables>
+      <variable varName="Leto" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Bosna in Hercegovina" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Črna gora" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Kosovo" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Severna Makedonija" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Srbija" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Avstrija" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Bolgarija" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Francija" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Hrvaska" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Italija" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Nemcija" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Slovaška" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Zdruzeno kraljestvo" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Rusija" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Svica" trait="textcontent" category="&ns_flows;"></variable>
+      <variable varName="Ukrajina" trait="textcontent" category="&ns_flows;"></variable>
+    </variables>
+    <v:sampleDataSets  xmlns:v="http://ns.adobe.com/Variables/1.0/" xmlns="http://ns.adobe.com/GenericCustomNamespace/1.0/">
+      <v:sampleDataSet dataSetName="2011">
+        <Leto>
+          <p>2011</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>49</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>10</p>
+        </Črna gora>
+        <Kosovo>
+          <p>6</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>24</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>41</p>
+        </Srbija>
+        <Avstrija>
+          <p>217</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>0</p>
+        </Bolgarija>
+        <Francija>
+          <p>28</p>
+        </Francija>
+        <Hrvaska>
+          <p>145</p>
+        </Hrvaska>
+        <Italija>
+          <p>78</p>
+        </Italija>
+        <Nemcija>
+          <p>285</p>
+        </Nemcija>
+        <Slovaška>
+          <p>0</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>80</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>2</p>
+        </Rusija>
+        <Svica>
+          <p>83</p>
+        </Svica>
+        <Ukrajina>
+          <p>1</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2012">
+        <Leto>
+          <p>2012</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>78</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>17</p>
+        </Črna gora>
+        <Kosovo>
+          <p>23</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>27</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>99</p>
+        </Srbija>
+        <Avstrija>
+          <p>447</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>3</p>
+        </Bolgarija>
+        <Francija>
+          <p>46</p>
+        </Francija>
+        <Hrvaska>
+          <p>195</p>
+        </Hrvaska>
+        <Italija>
+          <p>114</p>
+        </Italija>
+        <Nemcija>
+          <p>594</p>
+        </Nemcija>
+        <Slovaška>
+          <p>5</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>134</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>5</p>
+        </Rusija>
+        <Svica>
+          <p>197</p>
+        </Svica>
+        <Ukrajina>
+          <p>2</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2013">
+        <Leto>
+          <p>2013</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>101</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>9</p>
+        </Črna gora>
+        <Kosovo>
+          <p>37</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>31</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>114</p>
+        </Srbija>
+        <Avstrija>
+          <p>591</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>3</p>
+        </Bolgarija>
+        <Francija>
+          <p>53</p>
+        </Francija>
+        <Hrvaska>
+          <p>219</p>
+        </Hrvaska>
+        <Italija>
+          <p>87</p>
+        </Italija>
+        <Nemcija>
+          <p>509</p>
+        </Nemcija>
+        <Slovaška>
+          <p>2</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>164</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>10</p>
+        </Rusija>
+        <Svica>
+          <p>200</p>
+        </Svica>
+        <Ukrajina>
+          <p>1</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2014">
+        <Leto>
+          <p>2014</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>49</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>6</p>
+        </Črna gora>
+        <Kosovo>
+          <p>8</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>20</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>51</p>
+        </Srbija>
+        <Avstrija>
+          <p>1003</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>1</p>
+        </Bolgarija>
+        <Francija>
+          <p>41</p>
+        </Francija>
+        <Hrvaska>
+          <p>172</p>
+        </Hrvaska>
+        <Italija>
+          <p>69</p>
+        </Italija>
+        <Nemcija>
+          <p>631</p>
+        </Nemcija>
+        <Slovaška>
+          <p>3</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>222</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>9</p>
+        </Rusija>
+        <Svica>
+          <p>245</p>
+        </Svica>
+        <Ukrajina>
+          <p>2</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2015">
+        <Leto>
+          <p>2015</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>48</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>3</p>
+        </Črna gora>
+        <Kosovo>
+          <p>19</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>28</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>41</p>
+        </Srbija>
+        <Avstrija>
+          <p>1060</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>1</p>
+        </Bolgarija>
+        <Francija>
+          <p>53</p>
+        </Francija>
+        <Hrvaska>
+          <p>169</p>
+        </Hrvaska>
+        <Italija>
+          <p>88</p>
+        </Italija>
+        <Nemcija>
+          <p>735</p>
+        </Nemcija>
+        <Slovaška>
+          <p>7</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>306</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>9</p>
+        </Rusija>
+        <Svica>
+          <p>414</p>
+        </Svica>
+        <Ukrajina>
+          <p>2</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2016">
+        <Leto>
+          <p>2016</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>22</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>5</p>
+        </Črna gora>
+        <Kosovo>
+          <p>9</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>20</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>56</p>
+        </Srbija>
+        <Avstrija>
+          <p>1135</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>2</p>
+        </Bolgarija>
+        <Francija>
+          <p>50</p>
+        </Francija>
+        <Hrvaska>
+          <p>155</p>
+        </Hrvaska>
+        <Italija>
+          <p>98</p>
+        </Italija>
+        <Nemcija>
+          <p>810</p>
+        </Nemcija>
+        <Slovaška>
+          <p>12</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>362</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>5</p>
+        </Rusija>
+        <Svica>
+          <p>457</p>
+        </Svica>
+        <Ukrajina>
+          <p>2</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2017">
+        <Leto>
+          <p>2017</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>31</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>1</p>
+        </Črna gora>
+        <Kosovo>
+          <p>7</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>30</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>38</p>
+        </Srbija>
+        <Avstrija>
+          <p>1198</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>6</p>
+        </Bolgarija>
+        <Francija>
+          <p>67</p>
+        </Francija>
+        <Hrvaska>
+          <p>155</p>
+        </Hrvaska>
+        <Italija>
+          <p>114</p>
+        </Italija>
+        <Nemcija>
+          <p>799</p>
+        </Nemcija>
+        <Slovaška>
+          <p>3</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>424</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>14</p>
+        </Rusija>
+        <Svica>
+          <p>406</p>
+        </Svica>
+        <Ukrajina>
+          <p>1</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2018">
+        <Leto>
+          <p>2018</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>28</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>2</p>
+        </Črna gora>
+        <Kosovo>
+          <p>10</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>10</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>37</p>
+        </Srbija>
+        <Avstrija>
+          <p>751</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>3</p>
+        </Bolgarija>
+        <Francija>
+          <p>47</p>
+        </Francija>
+        <Hrvaska>
+          <p>111</p>
+        </Hrvaska>
+        <Italija>
+          <p>81</p>
+        </Italija>
+        <Nemcija>
+          <p>538</p>
+        </Nemcija>
+        <Slovaška>
+          <p>5</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>255</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>6</p>
+        </Rusija>
+        <Svica>
+          <p>316</p>
+        </Svica>
+        <Ukrajina>
+          <p>1</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2019">
+        <Leto>
+          <p>2019</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>45</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>1</p>
+        </Črna gora>
+        <Kosovo>
+          <p>4</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>23</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>40</p>
+        </Srbija>
+        <Avstrija>
+          <p>667</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>7</p>
+        </Bolgarija>
+        <Francija>
+          <p>45</p>
+        </Francija>
+        <Hrvaska>
+          <p>155</p>
+        </Hrvaska>
+        <Italija>
+          <p>94</p>
+        </Italija>
+        <Nemcija>
+          <p>483</p>
+        </Nemcija>
+        <Slovaška>
+          <p>7</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>240</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>3</p>
+        </Rusija>
+        <Svica>
+          <p>287</p>
+        </Svica>
+        <Ukrajina>
+          <p>1</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2020">
+        <Leto>
+          <p>2020</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>21</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>4</p>
+        </Črna gora>
+        <Kosovo>
+          <p>6</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>20</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>30</p>
+        </Srbija>
+        <Avstrija>
+          <p>586</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>1</p>
+        </Bolgarija>
+        <Francija>
+          <p>48</p>
+        </Francija>
+        <Hrvaska>
+          <p>138</p>
+        </Hrvaska>
+        <Italija>
+          <p>100</p>
+        </Italija>
+        <Nemcija>
+          <p>370</p>
+        </Nemcija>
+        <Slovaška>
+          <p>7</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>163</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>7</p>
+        </Rusija>
+        <Svica>
+          <p>238</p>
+        </Svica>
+        <Ukrajina>
+          <p>0</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2011">
+        <Leto>
+          <p>2011</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>116</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>11</p>
+        </Črna gora>
+        <Kosovo>
+          <p>21</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>25</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>100</p>
+        </Srbija>
+        <Avstrija>
+          <p>264</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>2</p>
+        </Bolgarija>
+        <Francija>
+          <p>26</p>
+        </Francija>
+        <Hrvaska>
+          <p>212</p>
+        </Hrvaska>
+        <Italija>
+          <p>120</p>
+        </Italija>
+        <Nemcija>
+          <p>524</p>
+        </Nemcija>
+        <Slovaška>
+          <p>9</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>55</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>11</p>
+        </Rusija>
+        <Svica>
+          <p>93</p>
+        </Svica>
+        <Ukrajina>
+          <p>11</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2012">
+        <Leto>
+          <p>2012</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>198</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>30</p>
+        </Črna gora>
+        <Kosovo>
+          <p>40</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>36</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>176</p>
+        </Srbija>
+        <Avstrija>
+          <p>527</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>2</p>
+        </Bolgarija>
+        <Francija>
+          <p>58</p>
+        </Francija>
+        <Hrvaska>
+          <p>300</p>
+        </Hrvaska>
+        <Italija>
+          <p>181</p>
+        </Italija>
+        <Nemcija>
+          <p>1157</p>
+        </Nemcija>
+        <Slovaška>
+          <p>2</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>110</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>9</p>
+        </Rusija>
+        <Svica>
+          <p>199</p>
+        </Svica>
+        <Ukrajina>
+          <p>2</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2013">
+        <Leto>
+          <p>2013</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>154</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>20</p>
+        </Črna gora>
+        <Kosovo>
+          <p>25</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>31</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>165</p>
+        </Srbija>
+        <Avstrija>
+          <p>615</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>5</p>
+        </Bolgarija>
+        <Francija>
+          <p>39</p>
+        </Francija>
+        <Hrvaska>
+          <p>333</p>
+        </Hrvaska>
+        <Italija>
+          <p>129</p>
+        </Italija>
+        <Nemcija>
+          <p>784</p>
+        </Nemcija>
+        <Slovaška>
+          <p>5</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>102</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>20</p>
+        </Rusija>
+        <Svica>
+          <p>184</p>
+        </Svica>
+        <Ukrajina>
+          <p>6</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2014">
+        <Leto>
+          <p>2014</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>109</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>12</p>
+        </Črna gora>
+        <Kosovo>
+          <p>17</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>18</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>87</p>
+        </Srbija>
+        <Avstrija>
+          <p>782</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>4</p>
+        </Bolgarija>
+        <Francija>
+          <p>31</p>
+        </Francija>
+        <Hrvaska>
+          <p>228</p>
+        </Hrvaska>
+        <Italija>
+          <p>141</p>
+        </Italija>
+        <Nemcija>
+          <p>583</p>
+        </Nemcija>
+        <Slovaška>
+          <p>5</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>129</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>7</p>
+        </Rusija>
+        <Svica>
+          <p>246</p>
+        </Svica>
+        <Ukrajina>
+          <p>4</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2015">
+        <Leto>
+          <p>2015</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>109</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>8</p>
+        </Črna gora>
+        <Kosovo>
+          <p>29</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>16</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>112</p>
+        </Srbija>
+        <Avstrija>
+          <p>759</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>5</p>
+        </Bolgarija>
+        <Francija>
+          <p>43</p>
+        </Francija>
+        <Hrvaska>
+          <p>208</p>
+        </Hrvaska>
+        <Italija>
+          <p>120</p>
+        </Italija>
+        <Nemcija>
+          <p>608</p>
+        </Nemcija>
+        <Slovaška>
+          <p>9</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>135</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>19</p>
+        </Rusija>
+        <Svica>
+          <p>276</p>
+        </Svica>
+        <Ukrajina>
+          <p>4</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2016">
+        <Leto>
+          <p>2016</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>94</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>6</p>
+        </Črna gora>
+        <Kosovo>
+          <p>20</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>15</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>90</p>
+        </Srbija>
+        <Avstrija>
+          <p>826</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>2</p>
+        </Bolgarija>
+        <Francija>
+          <p>40</p>
+        </Francija>
+        <Hrvaska>
+          <p>186</p>
+        </Hrvaska>
+        <Italija>
+          <p>118</p>
+        </Italija>
+        <Nemcija>
+          <p>584</p>
+        </Nemcija>
+        <Slovaška>
+          <p>9</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>124</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>13</p>
+        </Rusija>
+        <Svica>
+          <p>268</p>
+        </Svica>
+        <Ukrajina>
+          <p>0</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2017">
+        <Leto>
+          <p>2017</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>135</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>11</p>
+        </Črna gora>
+        <Kosovo>
+          <p>25</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>24</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>89</p>
+        </Srbija>
+        <Avstrija>
+          <p>869</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>2</p>
+        </Bolgarija>
+        <Francija>
+          <p>41</p>
+        </Francija>
+        <Hrvaska>
+          <p>246</p>
+        </Hrvaska>
+        <Italija>
+          <p>144</p>
+        </Italija>
+        <Nemcija>
+          <p>638</p>
+        </Nemcija>
+        <Slovaška>
+          <p>10</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>171</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>9</p>
+        </Rusija>
+        <Svica>
+          <p>287</p>
+        </Svica>
+        <Ukrajina>
+          <p>8</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2018">
+        <Leto>
+          <p>2018</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>77</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>8</p>
+        </Črna gora>
+        <Kosovo>
+          <p>8</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>14</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>58</p>
+        </Srbija>
+        <Avstrija>
+          <p>620</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>2</p>
+        </Bolgarija>
+        <Francija>
+          <p>29</p>
+        </Francija>
+        <Hrvaska>
+          <p>179</p>
+        </Hrvaska>
+        <Italija>
+          <p>105</p>
+        </Italija>
+        <Nemcija>
+          <p>463</p>
+        </Nemcija>
+        <Slovaška>
+          <p>1</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>109</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>12</p>
+        </Rusija>
+        <Svica>
+          <p>204</p>
+        </Svica>
+        <Ukrajina>
+          <p>0</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2019">
+        <Leto>
+          <p>2019</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>83</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>5</p>
+        </Črna gora>
+        <Kosovo>
+          <p>12</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>14</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>89</p>
+        </Srbija>
+        <Avstrija>
+          <p>633</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>10</p>
+        </Bolgarija>
+        <Francija>
+          <p>21</p>
+        </Francija>
+        <Hrvaska>
+          <p>206</p>
+        </Hrvaska>
+        <Italija>
+          <p>167</p>
+        </Italija>
+        <Nemcija>
+          <p>413</p>
+        </Nemcija>
+        <Slovaška>
+          <p>8</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>84</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>4</p>
+        </Rusija>
+        <Svica>
+          <p>199</p>
+        </Svica>
+        <Ukrajina>
+          <p>9</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2020">
+        <Leto>
+          <p>2020</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>57</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>4</p>
+        </Črna gora>
+        <Kosovo>
+          <p>9</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>11</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>47</p>
+        </Srbija>
+        <Avstrija>
+          <p>494</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>2</p>
+        </Bolgarija>
+        <Francija>
+          <p>23</p>
+        </Francija>
+        <Hrvaska>
+          <p>281</p>
+        </Hrvaska>
+        <Italija>
+          <p>179</p>
+        </Italija>
+        <Nemcija>
+          <p>365</p>
+        </Nemcija>
+        <Slovaška>
+          <p>7</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>74</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>5</p>
+        </Rusija>
+        <Svica>
+          <p>142</p>
+        </Svica>
+        <Ukrajina>
+          <p>3</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2011">
+        <Leto>
+          <p>2011</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>22</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>2</p>
+        </Črna gora>
+        <Kosovo>
+          <p>2</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>11</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>62</p>
+        </Srbija>
+        <Avstrija>
+          <p>33</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>2</p>
+        </Bolgarija>
+        <Francija>
+          <p>7</p>
+        </Francija>
+        <Hrvaska>
+          <p>78</p>
+        </Hrvaska>
+        <Italija>
+          <p>33</p>
+        </Italija>
+        <Nemcija>
+          <p>152</p>
+        </Nemcija>
+        <Slovaška>
+          <p>0</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>4</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>0</p>
+        </Rusija>
+        <Svica>
+          <p>17</p>
+        </Svica>
+        <Ukrajina>
+          <p>0</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2012">
+        <Leto>
+          <p>2012</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>37</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>6</p>
+        </Črna gora>
+        <Kosovo>
+          <p>3</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>6</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>53</p>
+        </Srbija>
+        <Avstrija>
+          <p>61</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>1</p>
+        </Bolgarija>
+        <Francija>
+          <p>21</p>
+        </Francija>
+        <Hrvaska>
+          <p>88</p>
+        </Hrvaska>
+        <Italija>
+          <p>24</p>
+        </Italija>
+        <Nemcija>
+          <p>295</p>
+        </Nemcija>
+        <Slovaška>
+          <p>1</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>11</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>0</p>
+        </Rusija>
+        <Svica>
+          <p>28</p>
+        </Svica>
+        <Ukrajina>
+          <p>1</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2013">
+        <Leto>
+          <p>2013</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>34</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>3</p>
+        </Črna gora>
+        <Kosovo>
+          <p>2</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>9</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>43</p>
+        </Srbija>
+        <Avstrija>
+          <p>72</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>1</p>
+        </Bolgarija>
+        <Francija>
+          <p>16</p>
+        </Francija>
+        <Hrvaska>
+          <p>59</p>
+        </Hrvaska>
+        <Italija>
+          <p>19</p>
+        </Italija>
+        <Nemcija>
+          <p>183</p>
+        </Nemcija>
+        <Slovaška>
+          <p>0</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>8</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>1</p>
+        </Rusija>
+        <Svica>
+          <p>17</p>
+        </Svica>
+        <Ukrajina>
+          <p>1</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2014">
+        <Leto>
+          <p>2014</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>17</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>1</p>
+        </Črna gora>
+        <Kosovo>
+          <p>3</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>8</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>29</p>
+        </Srbija>
+        <Avstrija>
+          <p>58</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>1</p>
+        </Bolgarija>
+        <Francija>
+          <p>17</p>
+        </Francija>
+        <Hrvaska>
+          <p>82</p>
+        </Hrvaska>
+        <Italija>
+          <p>29</p>
+        </Italija>
+        <Nemcija>
+          <p>136</p>
+        </Nemcija>
+        <Slovaška>
+          <p>0</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>6</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>0</p>
+        </Rusija>
+        <Svica>
+          <p>24</p>
+        </Svica>
+        <Ukrajina>
+          <p>0</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2015">
+        <Leto>
+          <p>2015</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>31</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>2</p>
+        </Črna gora>
+        <Kosovo>
+          <p>1</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>5</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>48</p>
+        </Srbija>
+        <Avstrija>
+          <p>52</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>0</p>
+        </Bolgarija>
+        <Francija>
+          <p>13</p>
+        </Francija>
+        <Hrvaska>
+          <p>99</p>
+        </Hrvaska>
+        <Italija>
+          <p>28</p>
+        </Italija>
+        <Nemcija>
+          <p>150</p>
+        </Nemcija>
+        <Slovaška>
+          <p>0</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>2</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>0</p>
+        </Rusija>
+        <Svica>
+          <p>29</p>
+        </Svica>
+        <Ukrajina>
+          <p>0</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2016">
+        <Leto>
+          <p>2016</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>23</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>5</p>
+        </Črna gora>
+        <Kosovo>
+          <p>2</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>6</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>42</p>
+        </Srbija>
+        <Avstrija>
+          <p>38</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>0</p>
+        </Bolgarija>
+        <Francija>
+          <p>9</p>
+        </Francija>
+        <Hrvaska>
+          <p>76</p>
+        </Hrvaska>
+        <Italija>
+          <p>17</p>
+        </Italija>
+        <Nemcija>
+          <p>120</p>
+        </Nemcija>
+        <Slovaška>
+          <p>2</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>2</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>1</p>
+        </Rusija>
+        <Svica>
+          <p>37</p>
+        </Svica>
+        <Ukrajina>
+          <p>1</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2017">
+        <Leto>
+          <p>2017</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>47</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>2</p>
+        </Črna gora>
+        <Kosovo>
+          <p>2</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>6</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>40</p>
+        </Srbija>
+        <Avstrija>
+          <p>32</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>0</p>
+        </Bolgarija>
+        <Francija>
+          <p>17</p>
+        </Francija>
+        <Hrvaska>
+          <p>125</p>
+        </Hrvaska>
+        <Italija>
+          <p>24</p>
+        </Italija>
+        <Nemcija>
+          <p>145</p>
+        </Nemcija>
+        <Slovaška>
+          <p>0</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>7</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>1</p>
+        </Rusija>
+        <Svica>
+          <p>18</p>
+        </Svica>
+        <Ukrajina>
+          <p>0</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2018">
+        <Leto>
+          <p>2018</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>29</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>2</p>
+        </Črna gora>
+        <Kosovo>
+          <p>2</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>4</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>28</p>
+        </Srbija>
+        <Avstrija>
+          <p>43</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>0</p>
+        </Bolgarija>
+        <Francija>
+          <p>7</p>
+        </Francija>
+        <Hrvaska>
+          <p>76</p>
+        </Hrvaska>
+        <Italija>
+          <p>20</p>
+        </Italija>
+        <Nemcija>
+          <p>98</p>
+        </Nemcija>
+        <Slovaška>
+          <p>0</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>2</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>0</p>
+        </Rusija>
+        <Svica>
+          <p>21</p>
+        </Svica>
+        <Ukrajina>
+          <p>0</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2019">
+        <Leto>
+          <p>2019</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>42</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>0</p>
+        </Črna gora>
+        <Kosovo>
+          <p>3</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>8</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>48</p>
+        </Srbija>
+        <Avstrija>
+          <p>35</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>0</p>
+        </Bolgarija>
+        <Francija>
+          <p>7</p>
+        </Francija>
+        <Hrvaska>
+          <p>108</p>
+        </Hrvaska>
+        <Italija>
+          <p>31</p>
+        </Italija>
+        <Nemcija>
+          <p>123</p>
+        </Nemcija>
+        <Slovaška>
+          <p>0</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>1</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>2</p>
+        </Rusija>
+        <Svica>
+          <p>14</p>
+        </Svica>
+        <Ukrajina>
+          <p>0</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+      <v:sampleDataSet dataSetName="2020">
+        <Leto>
+          <p>2020</p>
+        </Leto>
+        <Bosna in Hercegovina>
+          <p>38</p>
+        </Bosna in Hercegovina>
+        <Črna gora>
+          <p>4</p>
+        </Črna gora>
+        <Kosovo>
+          <p>9</p>
+        </Kosovo>
+        <Severna Makedonija>
+          <p>2</p>
+        </Severna Makedonija>
+        <Srbija>
+          <p>26</p>
+        </Srbija>
+        <Avstrija>
+          <p>46</p>
+        </Avstrija>
+        <Bolgarija>
+          <p>1</p>
+        </Bolgarija>
+        <Francija>
+          <p>9</p>
+        </Francija>
+        <Hrvaska>
+          <p>94</p>
+        </Hrvaska>
+        <Italija>
+          <p>25</p>
+        </Italija>
+        <Nemcija>
+          <p>176</p>
+        </Nemcija>
+        <Slovaška>
+          <p>0</p>
+        </Slovaška>
+        <Zdruzeno kraljestvo>
+          <p>9</p>
+        </Zdruzeno kraljestvo>
+        <Rusija>
+          <p>0</p>
+        </Rusija>
+        <Svica>
+          <p>14</p>
+        </Svica>
+        <Ukrajina>
+          <p>0</p>
+        </Ukrajina>
+      </v:sampleDataSet>
+    </v:sampleDataSets>
+  </variableSet>
+</variableSets>
+</svg>
