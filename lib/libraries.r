@@ -8,6 +8,10 @@ library(readr)
 library(dplyr)
 library(tibble)
 
+library(ggdendro)
+library(XML)
+library(xml2)
+library(methods)
 library(tidyverse) # za vizualizacijo podatkov
 library(gridExtra) # za prikaz vec grafov naenkrat
 library(reshape) # za poenostavljeno obdelavo histogramov
