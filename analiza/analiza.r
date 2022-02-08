@@ -1,202 +1,101 @@
 # 4. faza: Napredna analiza podatkov
 
-# ---------------------------------------------------------------------------- #
-# Izseljevanje mladih moskih
+# Razvrscanje najvecjih skupin
+# Pri moskih je srednjosolska
 
-data1 <- Izseljevanje_Moski_Starost %>% filter(Kategorija == "Mladi")
-model1 = lm(Moski ~ Leto + I(Leto^2), data1)
+Najvecja_skupina_moski <- Starost_Izobrazba_Spol %>% filter(Izobrazba == "SS_moski")
 
-napoved1 <- data.frame(
-  Leto = 2011:2023,
-  Drugo = predict(model1, data.frame(Leto = 2011:2023))
-)
+data1 <- Najvecja_skupina_moski %>% select(Leto, Stevilo) %>% as.matrix() %>% scale()
+D1 <- dist(data1)
+model1 <- hclust(D1)
+ddata1 <- dendro_data(model1, type = "rectangle")
 
-napoved1<- full_join(napoved1, data1)
+ddata1$labels$label<- paste(Najvecja_skupina_moski$Starost[model1$order])
+ddata1$labels$Starost <- Najvecja_skupina_moski$Starost[model1$order]
 
-Mladi_Moski_Napoved <- ggplot(napoved1) +
-  geom_point(aes(Leto, Moski), col = "black", size = 3, alpha= 0.75) +
-  geom_line(aes(Leto, Drugo), col = "red", size = 1.5, alpha= 0.75) +
-  scale_x_continuous(breaks = seq(2011, 2023, 2)) +
-  scale_y_continuous(breaks = seq(0, 10000, 500)) + 
-  labs(x = "LETO", y = "ŠTEVILO") +
-  ggtitle("MLADI") +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
+dendogram1 <- ggplot(segment(ddata1)) +
+  geom_segment(aes(x = x, y = y, xend = xend, yend = yend )) +
+  coord_flip() +
+  scale_y_reverse(expand = c(0.2,0)) +
+  geom_text(
+    data = ddata1$labels,
+    aes(x=x, y=y, label=label, color = Starost), hjust=0, size=4, nudge_y = 0.03) +
+  theme(
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    panel.background = element_rect(fill = "white"),
+    panel.grid = element_blank()
+  )
 
+skupine <- cutree(model1, k=3)
 
-# ---------------------------------------------------------------------------- #
-# Izseljevanje zrelih moskih
+razvrstitev1 <- Najvecja_skupina_moski %>% 
+  ggplot(aes(Leto, Stevilo, col = skupine)) +
+  geom_point(size = 4) +
+  theme_classic() +
+  scale_x_continuous(breaks = seq(2011, 2020, 1))
 
-data2 <- Izseljevanje_Moski_Starost %>% filter(Kategorija == "Zreli")
-model2 = lm(Moski ~ Leto + I(Leto^2), data2)
+# Pri zenskah je visjesolska
 
-napoved2 <- data.frame(
-  Leto = 2011:2023,
-  Drugo = predict(model2, data.frame(Leto = 2011:2023))
-)
+Najvecja_skupina_zenske <- Starost_Izobrazba_Spol %>% filter(Izobrazba == "VS_zenske")
 
-napoved2 <- full_join(napoved2, data2)
+data2 <- Najvecja_skupina_zenske %>% select(Leto, Stevilo) %>% as.matrix() %>% scale()
+D2 <- dist(data2)
+model2 <- hclust(D2)
+ddata2 <- dendro_data(model2, type = "rectangle")
 
-Zreli_Moski_Napoved <- ggplot(napoved2) +
-  geom_point(aes(Leto, Moski), col = "black", size = 3, alpha= 0.75) +
-  geom_line(aes(Leto, Drugo), col = "red", size = 1.5, alpha= 0.75) +
-  scale_x_continuous(breaks = seq(2011, 2023, 2)) +
-  scale_y_continuous(breaks = seq(0, 10000, 500)) + 
-  labs(x = "LETO", y = "ŠTEVILO") +
-  ggtitle("ZRELI") +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
+ddata2$labels$label<- paste(Najvecja_skupina_zenske$Starost[model2$order])
+ddata2$labels$Starost <- Najvecja_skupina_zenske$Starost[model2$order]
 
-# ---------------------------------------------------------------------------- #
-# Izseljevanje mladih zensk
+dendogram2 <- ggplot(segment(ddata2)) +
+  geom_segment(aes(x = x, y = y, xend = xend, yend = yend )) +
+  coord_flip() +
+  scale_y_reverse(expand = c(0.2,0)) +
+  geom_text(
+    data = ddata2$labels,
+    aes(x=x, y=y, label=label, color = Starost), hjust=0, size=4, nudge_y = 0.03) +
+  theme(
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    panel.background = element_rect(fill = "white"),
+    panel.grid = element_blank()
+  )
 
+skupine <- cutree(model2, k=3)
 
-data3 <- Izseljevanje_Zenske_Starost %>% filter(Kategorija == "Mladi")
-model3 = lm(Zenske ~ Leto, data3)
+razvrstitev2 <- Najvecja_skupina_zenske %>% 
+  ggplot(aes(Leto, Stevilo, col = skupine)) +
+  geom_point(size = 4) +
+  theme_classic() +
+  scale_x_continuous(breaks = seq(2011, 2020, 1))
 
-napoved3 <- data.frame(
-  Leto = 2011:2023,
-  Drugo = predict(model3, data.frame(Leto = 2011:2023))
-)
+# Napovedni model
+# Za mosko populacijo
 
-napoved3<- full_join(napoved3, data3)
+MA <- function(x, n) stats::filter(x, rep(1/n,n), sides = 1)
 
-Mlade_Zenske_Napoved <- ggplot(napoved3) +
-  geom_point(aes(Leto, Zenske), col = "black", size = 3, alpha= 0.75) +
-  geom_line(aes(Leto, Drugo), col = "red", size = 1.5, alpha= 0.75) +
-  scale_x_continuous(breaks = seq(2011, 2023, 2)) +
-  scale_y_continuous(breaks = seq(0, 10000, 500)) + 
-  labs(x = "LETO", y = "ŠTEVILO") +
-  ggtitle("MLADE") +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
+data3 <- Najvecja_skupina_moski %>% filter(Starost != "Stari")
 
+napoved1 <- data3 %>%
+  ggplot(aes(Leto, Stevilo))+
+  geom_point(col = "green", size = 4) +
+  stat_smooth(se = TRUE, size = 2) +
+  geom_line(aes(Leto, MA(Stevilo, 3)), col = "red", size = 2) + 
+  theme_classic() +
+  scale_x_continuous(breaks = seq(2011, 2022, 1))
 
-# ---------------------------------------------------------------------------- #
-# Izseljevanje zrelih zensk
+# Za zensko populacijo
 
-data4 <- Izseljevanje_Zenske_Starost %>% filter(Kategorija == "Zreli")
-model4 = lm(Zenske ~ Leto, data4)
+data4 <- Najvecja_skupina_zenske %>% filter(Starost != "Stari")
 
-napoved4 <- data.frame(
-  Leto = 2011:2023,
-  Drugo = predict(model4, data.frame(Leto = 2011:2023))
-)
-
-napoved4 <- full_join(napoved4, data4)
-
-Zrele_Zenske_Napoved <- ggplot(napoved4) +
-  geom_point(aes(Leto, Zenske), col = "black", size = 3, alpha= 0.75) +
-  geom_line(aes(Leto, Drugo), col = "red", size = 1.5, alpha= 0.75) +
-  scale_x_continuous(breaks = seq(2011, 2023, 2)) +
-  scale_y_continuous(breaks = seq(0, 2500, 250)) + 
-  labs(x = "LETO", y = "ŠTEVILO") +
-  ggtitle("ZRELE") +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
-
-# ---------------------------------------------------------------------------- #
-
-starost_izobrazba_spol$skupajVS <- starost_izobrazba_spol$VS_moski + starost_izobrazba_spol$VS_zenske
-starost_izobrazba_spol$skupajSS <- starost_izobrazba_spol$SS_moski + starost_izobrazba_spol$SS_zenske
-starost_izobrazba_spol$skupajOS <- starost_izobrazba_spol$OS_moski + starost_izobrazba_spol$OS_zenske
-
-# ---------------------------------------------------------------------------- #
-# Izseljevanje VS
-
-data5 <- starost_izobrazba_spol %>% pivot_longer(cols = names(.)[-1:-2]) %>% filter(name == "skupajVS") %>% filter(Kategorija == "Mladi")
-data6 <- starost_izobrazba_spol %>% pivot_longer(cols = names(.)[-1:-2]) %>% filter(name == "skupajVS") %>% filter(Kategorija == "Zreli")
-data7 <- starost_izobrazba_spol %>% pivot_longer(cols = names(.)[-1:-2]) %>% filter(name == "skupajVS") %>% filter(Kategorija == "Stari")
-data7$VS <- data5$value + data6$value + data7$value
-
-model5 <- lm(VS ~ Leto, data7)
-
-napoved5 <- data.frame(Leto = 2011 : 2023,
-                       Drugo = predict(model5, data.frame(Leto = 2011:2023))
-                       )
-
-napoved5 <- full_join(napoved5, data7)
-
-VS_Napoved <- ggplot(napoved5) +
-  geom_point(aes(Leto, VS), col = "black", size = 3, alpha= 0.75) +
-  geom_line(aes(Leto, Drugo), col = "red", size = 1.5, alpha= 0.75) +
-  scale_x_continuous(breaks = seq(2011, 2023, 2)) +
-  scale_y_continuous(breaks = seq(0, 5000, 500)) + 
-  labs(x = "LETO", y = "ŠTEVILO") +
-  ggtitle("VISOKOŠOLSKA IZOBRAZBA") +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
-
-# ---------------------------------------------------------------------------- #
-# Izseljevanje SS
-
-data8 <- starost_izobrazba_spol %>% pivot_longer(cols = names(.)[-1:-2]) %>% filter(name == "skupajSS") %>% filter(Kategorija == "Mladi")
-data9 <- starost_izobrazba_spol %>% pivot_longer(cols = names(.)[-1:-2]) %>% filter(name == "skupajSS") %>% filter(Kategorija == "Zreli")
-data10 <- starost_izobrazba_spol %>% pivot_longer(cols = names(.)[-1:-2]) %>% filter(name == "skupajSS") %>% filter(Kategorija == "Stari")
-data10$SS <- data8$value + data9$value + data10$value
-
-model6 <- lm(SS ~ Leto, data10)
-
-napoved6 <- data.frame(Leto = 2011 : 2023,
-                       Drugo = predict(model6, data.frame(Leto = 2011:2023))
-)
-
-napoved6 <- full_join(napoved6, data10)
-
-SS_Napoved <- ggplot(napoved6) +
-  geom_point(aes(Leto, SS), col = "black", size = 3, alpha= 0.75) +
-  geom_line(aes(Leto, Drugo), col = "red", size = 1.5, alpha= 0.75) +
-  scale_x_continuous(breaks = seq(2011, 2023, 2)) +
-  scale_y_continuous(breaks = seq(0, 5000, 500)) + 
-  labs(x = "LETO", y = "ŠTEVILO") +
-  ggtitle("SREDNJEŠOLSKA IZOBRAZBA") +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
-
-# ---------------------------------------------------------------------------- #
-# Izseljevanje OS
-
-data11 <- starost_izobrazba_spol %>% pivot_longer(cols = names(.)[-1:-2]) %>% filter(name == "skupajOS") %>% filter(Kategorija == "Mladi")
-data12 <- starost_izobrazba_spol %>% pivot_longer(cols = names(.)[-1:-2]) %>% filter(name == "skupajOS") %>% filter(Kategorija == "Zreli")
-data13 <- starost_izobrazba_spol %>% pivot_longer(cols = names(.)[-1:-2]) %>% filter(name == "skupajOS") %>% filter(Kategorija == "Stari")
-data13$OS <- data11$value + data12$value + data13$value
-
-model7 <- lm(OS ~ Leto, data13)
-
-napoved7 <- data.frame(Leto = 2011 : 2023,
-                       Drugo = predict(model7, data.frame(Leto = 2011:2023))
-)
-
-napoved7 <- full_join(napoved7, data13)
-
-OS_Napoved <- ggplot(napoved7) +
-  geom_point(aes(Leto, OS), col = "black", size = 3, alpha= 0.75) +
-  geom_line(aes(Leto, Drugo), col = "red", size = 1.5, alpha= 0.75) +
-  scale_x_continuous(breaks = seq(2011, 2023, 2)) +
-  scale_y_continuous(breaks = seq(0, 2000, 250)) + 
-  labs(x = "LETO", y = "ŠTEVILO") +
-  ggtitle("OSNOVNOŠOLSKA IZOBRAZBA") +
-  theme(panel.background = element_rect(fill = "white"),
-        panel.grid.major = element_line(color = "black", linetype = "dotted"),
-        legend.position = "bottom",
-        legend.title = element_blank(),
-        legend.background = element_rect(color = "grey"));
-
+napoved2 <- data4 %>%
+  ggplot(aes(Leto, Stevilo))+
+  geom_point(col = "green", size = 4) +
+  stat_smooth(se = TRUE, size = 2) +
+  geom_line(aes(Leto, MA(Stevilo, 3)), col = "red", size = 2) + 
+  theme_classic() +
+  scale_x_continuous(breaks = seq(2011, 2022, 1))
