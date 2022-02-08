@@ -37,46 +37,36 @@ source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
 <font size = "4">
-Podatke o odseljevanju sem uvozil v obliki CSV formata. Delijo se na tri dele.
+Podatke o odseljevanju sem uvozil v obliki CSV in XML formata. Delijo se na tri dele.
 Prvi zajema splošne podatke o odseljevanju iz Slovenije. Drugi ima podatke o
 odseljevanju glede na prihodnjo prebivališče. Vsi podatki so od leta 2011 do 2020.
 
-1. `starost_izobrazba_spol` - zajema kombinacije štirih spremenljivk,
-  - `starost` - spremenljivka: mladi, zreli, stari(neurejen faktor),
-  - `spol` - spremenljivka: moški, ženski(neurejen faktor),
-  - `izobrazba` - spremenljivka: stopnja izobrazbe(neurejen faktor),
-  - `leto` - spremenljivka(število)
+1. `Starost_Izobrazba_Spol` - zajema kombinacije štirih spremenljivk,
+  - `starost` - mladi, zreli, stari(neurejen faktor),
+  - `spol` -  moški, ženski(neurejen faktor),
+  - `izobrazba` - stopnja izobrazbe(neurejen faktor),
+  - `leto` - število
 
-2. `Starost_spol` - zajema kombinacije treh spremenljivk,
-  - `starost` - spremenljivka: mladi, zreli, stari(neurejen faktor),
-  - `spol` - spremenljivka: moški, ženski(neurejen faktor),
-  - `leto` - spremenljivka(število)
+2. `Starost_Spol` - zajema kombinacije treh spremenljivk,
+  - `starost` - mladi, zreli, stari(neurejen faktor),
+  - `spol` -  moški, ženski(neurejen faktor),
+  - `leto` - število
   
-3. `aktivnost` - zajema kombinacije stirih spremenljivk,
-  - `delovna aktivnost` - spremenljivka: zaposlen, nezaposlen(neurejen faktor),
-  - `spol` - spremenljivka: moški, ženski(neurejen faktor),
-  - `starost` - premenljivka: mladi, zreli(neurejen faktor),
-  - `leto` - spremenljivka(število)
+3. `Aktivnost` - zajema kombinacije stirih spremenljivk,
+  - `delovna aktivnost` - zaposlen, nezaposlen(neurejen faktor),
+  - `starost` - mladi, zreli, stari(neurejen faktor),
+  - `spol` -  moški, ženski(neurejen faktor),
+  - `leto` - število
 
-4. `starost_Evropa` - zajema kombinacije treh spremenljivk,
-  - `evropske drzave` - spremenljivka(neurejen faktor),
-  - `starost` - premenljivka: mladi, zreli(neurejen faktor),
-  - `leto` - spremenljivka(število)
+4. `Starost_Evropa` - zajema kombinacije treh spremenljivk,
+  - `evropske drzave` - neurejen faktor,
+  - `starost` - mladi, zreli(neurejen faktor),
+  - `leto` - število
   
-5. `izobrazba_Evropa` - zajema kombinacije treh spremenljivk,
-  - `evropske drzave` - spremenljivka(neurejen faktor),
-  - `izobrazba` - spremenljivka: stopnja izobrazbe(neurejen faktor),
-  - `leto` - spremenljivka(število)
-  
-6. `Evropa` - zajema kombinacije dveh spremenljivk,
-  - `evropske drzave` - spremenljivka(neurejen faktor),
-  - `leto` - spremenljivka(število)
-  
-7. `obcine_odseljeni` - zajema kombinacije dveh spremenljivk,
-  - `obcine` - spremenljivka(neurejen faktor),
-  - `leto` - spremenljivka(število)
-  
-</font>
+5. `Evropa` - zajema kombinacije dveh spremenljivk,
+  - `evropske drzave` - neurejen faktor,
+  - `leto` - število
+  </font>
 
 </br>
   
@@ -85,12 +75,6 @@ odseljevanju glede na prihodnjo prebivališče. Vsi podatki so od leta 2011 do 2
 ```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE,  results='hide'}
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
-
-<font size = "4">
-V tem delu bom predstavil podatke v obliki grafov, histogramov, in zemljevidov. Pri bolj splošnih spremenljivkah bom predstavil tudi napoved do leta 2023 y linearno ali kvadratno regresijo. Za napoved take teme kot je odseljevanje je velika moznost da napovedi ne bodo najbolj točne saj na to vpliva veliko spremenljivk, ki jih težko merimo oz. napovemo kot so gospodarsko okrevanje po krizi, inflacija, povprasevanje po delovni sili v tujini.
-</font>
-
-</br>
 
 ## Splošna slovenska statistika
 
@@ -103,7 +87,7 @@ print(Izseljevanje_Moski_Starost_Graf)
 ```
 
 <font size = "4">
-Zgornji histogram prikazuje kako se je skozi leto spreminjala starostna sestava odseljenega moskega prebivalstva. Največ je bilo zrelega prebivalstva, potem mladega in nato starega. Skozi leta so deleži ostali podobni.
+Zgornji histogram prikazuje kako se je skozi leto spreminjal delez starostne sestave odseljenega moškega prebivalstva. Največ je bilo zrelega prebivalstva, potem mladega in nato starega. Skozi leta so deleži ostali podobni.
 </font>
 
 </br>
@@ -115,7 +99,9 @@ print(Izseljevanje_Zenske_Starost_Graf)
 ```
 
 <font size = "4">
-Pri ženskem spolu pa je drugače. Najvec je mladih, ki jih je več kot polovico in šele nato zrelih.  
+Pri ženskem spolu je na bilo na začetku desetletja(2011 in 2012) največ zrelih, nato
+pa so se deleži spremenili. Od leta 2014 do 2020 je najvecji delež predstavljalo mlado
+prebivalstvo. Delež starejših je tako kot pri moških najmanjši.
 </font>
 
 </br>
@@ -127,7 +113,7 @@ print(Izseljevanje_Mladi_Zreli_Graf)
 ```
 
 <font size = "4">
-Ta histogram na splošno prikazuje kar sta prikazovala zgornja histograma, le da v tem primeru ne ločujemo na spol ampak gledamo le razmerje mladi zreli. Skozi zadnje desetleje je bilo število mladih in zrelih bolj kot ne isto, vendar se vidi kako v zadnjih treh letih veliko hitreje narašča število mladega prebivalstva kot zrelega. Preseneča tudi podatek leta 2020. Kot kaze korona kriza in "lockdown" nista vplivala na trend.
+Ta histogram na splošno prikazuje, kar sta prikazovala zgornja dva histograma, le da v tem primeru ločujemo na spol in na starost. Ne prikazujemo vec deleže ampak dejanske številke. Skozi celotno desetletje se je izselilo vec moskih kot zensk. Razmerje se je v zadnjih treh letih(2018 - 2020) še bolj povečalo kljub lockdownu. Med moškimi se je vedno izselilo več zrelih kot mladih. Pri ženskah je ravno obratno. Razen leta 2011, se je vedno izselilo več mladih. Najvec zenskega prebivalstva se je izselilo leta 2017, najvec moškega pa leta 2020.
 </font>
 
 </br>
@@ -140,11 +126,11 @@ print(Izseljevanje_Mlade_Zenske_Graf)
 ```
 
 <font size = "4">
-Grafa prikazujeta, kako se mlado prebivalstvo razlikuje po izobrazbeni sestavi glede na spol. 
+Grafa prikazujeta, kako se mlado prebivalstvo razlikuje po izobrazbeni sestavi glede na spol. Prikazan je s deleži.
 
-Pri moških prevladuje skozi vsa leta srednješolska izobrazba. Osnovno in visješolska pa sta skozi desetletje približno enaki. Višja malo bolj prevladuje od osnovne zadnja leta. 
+Pri moških prevladuje skozi vsa leta srednješolska izobrazba. Na začetku desetletja je bil delež odseljenih z osnovnošolsko izobrazbo večji od višješolskega. Potem se je delež drugega povečal in je od leta 2014 do danes še vedno večji.
 
-Pri ženskam je drugače. Odseljenih z osnovnošolsko izobrazbo skoraj ni. Tako kot pri levem grafu je veliko z srednješolsko vendar jih je prav toliko z visješolsko. Na podlagi grafov lahko recemo da je povprečna izobrazba mladih odseljenih žensk višja od moških.
+Pri ženskam je drugače. Odseljenih z osnovnošolsko izobrazbo je daleč najmanj. Na začetku se jih je največ izselilo s srednješolsko, nato pa se je kar precej povečal delež odseljenih žensk z visokošolsko izobrazbo.
 </font>
 
 </br>
@@ -158,7 +144,10 @@ print(Izseljevanje_Zrele_Zenske_Graf)
 
 <font size = "4">
 
-Pri moških je graf podoben. Vidno največ s srednješolsko, ostali pa podobno. Pri ženskah tudi ni večje razlike, le da je dalj časa prevladovala srednjesolka izobrazba. Na podlagi spodnjih dveh grafov lahko trdimo, da izobrazba bolj vpliva na odseljevanje kot starost.
+Pri moških je graf podoben kot pri mladih. Vidno največji delež ima srednješolsko.
+Skozi vseh desetih let je bil daleč največji. Odseljenih z osnovnošolsko je vse manj, narašča pa delež z visokošolsko.
+
+Pri ženskah tudi ni večje razlike. Največ je visokoizobraženih, ki jih je vsako leto več, saj druga dva deleža upadata. Za konec lahko rečemo, da to potrjuje, da izobrazba bolj vpliva na odseljevanje kot starost.
 </font>
 
 </br>
@@ -177,9 +166,13 @@ print(OS_Graf)
 ```
 
 <font size = "4">
-Kot smo omenili pri prejšnih grafih je, da na odseljevanje najbolj vpliva izobrazba, zato smo pri slednjih grafih prikazali deleže vseh kombinacij spola in starosti glede na izobrazbo. Podatke iz leta 2011 in 2020.
+Kot smo omenili pri prejšnih grafih je, da na odseljevanje najbolj vpliva izobrazba, zato smo pri slednjih grafih prikazali deleže vseh kombinacij spola in starosti glede na izobrazbo. Podatki so iz leta 2011 in 2020. Zanima nas sprememba v zadnjem desetletju.
 
-Pri visokošolski izobrazbi je pri obeh letih prevladovala mlado in zrelo žensko prebivalstvo. Imeli sta tudi največjo spremembo. Pri srednješolski je daleč največ zrelih moških. Največjo spremembo je imelo mlado prebivalstvo. Osnovnošolska je imela največji upad zrelih, najbolj pa se je povecal delez mladih, ki so na prvem in drugem mestu.
+Pri visokošolski izobrazbi je pri obeh letih prevladovala mlado in zrelo žensko prebivalstvo. Imeli sta tudi veliko spremembo. Povečalo se je skoraj za dvakrat. Največjo je imelo mlado moško prebivalstvo od 124 na 276. 
+
+Pri srednješolski izobrazbi so bile najmanše spremembe. Največ je bilo v obeh letih zrelega moškega prebivalstva. Največjo pozitivno spremembo je imelo mlado prebivalstvo. Edina kategorija z negativno spremembo je imelo zrelo žensko prebivalstvo.
+
+Pri osnovnošolski izobrazbi je zrelo prebivalstvo doživelo največji upad za okoli 50%. Edini kategoriji, ki sta narastli sta mlada moška in ženska populacija. Leta 2011 je bilo največ zrelih moških, leta 2020 pa mladih moških.
 
 
 </font>
@@ -196,7 +189,11 @@ print(Neaktivni_Graf)
 ```
 
 <font size = "4">
-Zgornja grafa prikazujeta aktivno(zaposleno) in neaktivno(nezaposleno) glede na spol. Med zaposlenimi se je izselilo največ žensk in mladih. Med nezaposlenimi pa je v zadnjih letih število vseh skupin podobno.
+Zgornja grafa prikazujeta število aktivnega(zaposlenega) in neaktivnega(nezaposlenega) prebivalstvo glede na spol. Skozi vsa leta, se je izselilo več delovno aktivnih kot delovno neaktivnih, ne glede na vsako kombinacijo starosti in spola. 
+
+Med aktivnimi je bilo skozi vsa leta največ zrelega moškega prebivalstva. Nato je sledilo mlado prebivalstvo. Najmanj je bilo zrelih žensk. Nobena kategorija nima svojega trenda. Pri vseh je krivulja enake oblike. Na začetku desetletja so vse naraščale na koncu pa vse padajo.
+
+Pri neaktivnih je graf podoben. Največ je zrelih moških, nato pa so vse ostale kategorije dokaj enake. Trend je tukaj nekolika drugačen. Vse skupine so rastle do leta 2017, nato pa so doživele padec in padajo do danes.
 </font>
 
 </br>
@@ -212,7 +209,7 @@ print(Evropa_map)
 ```
 
 <font size = "4">
-Na zemljevidu je z prikazano skupno število odseljenih v zadnjem desetletju. Rdeče so najbolj poseljene rumene pa najmanj. Nekaj držav izstopa. To so Avstrija, Nemčija, Italija, Švica, Velika Britanija in Hrvaška.
+Na zemljevidu je z prikazano skupno število odseljenih v zadnjem desetletju. Rdeče so najbolj poseljene države, rumene pa najmanj. Nekaj držav izstopa. To so Avstrija, Nemčija, Italija, Švica, Velika Britanija in Hrvaška. Edina država v katero se ni noben izselil je Moldavija. Drugače pa je evropska porazdelitev izseljenih enakomerna.
 </font>
 
 ## Odseljevanje v najbolj priseljene drzave glede na starost
@@ -224,68 +221,106 @@ print(Drzave_Graf);
 ```
 
 <font size = "4">
-Države, ki so najbolj razvite imajo največ mladih prisljenih kot so švica, Avstrija in Velika Britanija ter Nemčija. Državi kot sta Hrvaška in Italija, ki sta manj raziti kot zgornje pa imata veliko več priseljenih zrele starost.
+Za konec evropske statistike bomo predtsavili bolj podrobno države, v katere se je izselilo največ Slovencev.
+
+Države, ki so bolj razvite imajo več mladega prisljenega prebivalstva. Te so švica, Avstrija in Velika Britanija ter Nemčija. Državi kot sta Hrvaška in Italija, ki sta manj raziti kot zgornje pa imata veliko več priseljenih zrele starost. Najbolj razgibana grafa imata Avstrija in Nemčija, ki se gibata z trendom. Pri ostalih državah pa so krivulje bolj enakomerne in se niso nekaj dosti spreminjale. Pri vseh je bil višek odseljenih leta 2017.
 </font>
 
 </br>
 
 # Napredna analiza podatkov
 
-```{r analiza, echo=FALSE, message=FALSE}
+```{r analiza, echo=FALSE, message=FALSE, warning=FALSE,  results='hide'}
 source("analiza/analiza.r", encoding="UTF-8")
 ```
 
+</br>
+
 <font size = "4">
-Pri napredni analizi bom analiziral spremenljivki, ki sta se pokazali da sta najbolj pomemni s polinomsko analizo. Te sta izobrazba in starost.
+Pri napredni analizi bom analiziral vsak spol posebej. Najprej bom oblikoval dendogram in grupiral točke, nato pa bom z linearno regresijo napovedal trend. Izbral sem si tisto regresijo, katere "medium residuals" so blizu 0. Trend regresije pa bom potrdil z "moving average" krivuljo.
 </font>
 
-</br>
-
-### Analiza odseljevanja moškega prebivalstva
+## Analiza moškega prebivalstva
 
 </br>
 
-```{r graf8, figures-side, fig.show="hold", out.width="50%"}
-print(Mladi_Moski_Napoved)
-print(Zreli_Moski_Napoved)
+<font size = "4">
+Pri moškemu prebivalstvu bom analiziral populacijo s srednješolsko izobrazbo, saj ima največji delež. Z fukcijo cutree sem razdelil podatke na 3 skupine.
+</font>
+
+```{r dendogram1, fig.align='left', out.width="70%", out.height="30%"}
+print(dendogram1);
 ```
 
-<font size = "4">
-Pri obeh starostnih skupinah je trend enak. Predvideno je da bodo številke izseljenih še naprej naraščale.
-</font>
-
 </br>
 
-### Analiza odseljevanja ženskega prebivalstva
-
-```{r graf9, figures-side, fig.show="hold", out.width="50%"}
-print(Mlade_Zenske_Napoved)
-print(Zrele_Zenske_Napoved)
+```{r razvrstitev1,  fig.align='left', out.width="70%", out.height="30%"}
+print(razvrstitev1);
 ```
 
 </br>
 
 <font size = "4">
-Pri mladih je trend pozitiven, pri zrelih pa je predviden manjsi upad.
+Za napoved sem si izbral kvadratno linearno regresijo, ki je na grafu modra krivulja. Rdeča predstavlja "moving average" dolžine 3. Uporabil sem samo podatke mladega in zrelega prebivalstva, saj najbolj oblikujeta trende. Vidno je, da je med letoma 2016 in 2017 odseljevanje doživelo maksimum in je po tem začelo padati.
 </font>
+
+```{r napoved1,  fig.align='left', out.width="70%", out.height="30%"}
+print(napoved1);
+```
 
 </br>
 
-### Analiza odseljevanja prebivalstva glede na izobrazbo
+## Analiza ženskega prebivalstva
 
-```{r graf10, figures-side, fig.show="hold", out.width="50%"}
-print(VS_Napoved)
-print(SS_Napoved)
+</br>
+
+<font size = "4">
+Pri ženskemu prebivalstvu bom analiziral populacijo s višješolsko izobrazbo, saj ima največji delež. Z fukcijo cutree sem razdelil podatke na 3 skupine.
+</font>
+
+### Dendogram ženskega prebivalstva
+
+```{r dendogram2, fig.align='left', out.width="70%", out.height="30%"}
+print(dendogram2);
 ```
 
-```{r graf11, fig.align='center',out.width="50%"}
-print(OS_Napoved)
+</br>
+
+### Razvrščanje ženskega prebivalstva
+
+```{r razvrstitev2,  fig.align='left', out.width="70%", out.height="30%"}
+print(razvrstitev2);
 ```
 
 </br>
 
 <font size = "4">
-Napoved nam pove, da bo v prihodnostki vse večje povprasevanje po izobraženi delovni sili. Visokošolska bo imela veliko rast, srednješolka manjši upad, osnovnošolska pa kar velik.
+Podobno kot pri moškem prebivalstvu sem naredil tudi za žensko populacijo. Krivulji sta si zelo podobi. Isto leto imata maksimum(2016 in 2017) in potem začneta padati. Le da pri ženskah je krivulja malo bolj položna.
 </font>
 
+```{r napoved2,  fig.align='left', out.width="70%", out.height="30%"}
+print(napoved2);
+```
+
 </br>
+
+# Zaključek
+
+</br>
+
+<font size = "4">
+
+* Več se izseljuje moškega kot ženskega prebivalstva
+* Višek odseljevanja je bil med letoma 2016 in 2017
+* Pri moških najbolj prevladuje srednješolska izobrazba in zrela starostna skupina
+* Pri ženskah najbolj prevladuje visokošolska izobrazba in mlada starostna skupina
+* Na trend odseljevanja bolj vpliva izobrazba kot starost
+* Odseljevanje ljudi z visokošolsko izobrazbo je doživelo največjo pozitivno rast, največ se odseli mladih
+* Odseljevanje ljudi s srednješolsko izobrazbo ni imelo večje spremembe, še vedno se največ se odseli zrelih moških
+* Odseljevanje ljudi z osnovnošolsko izobrazbo je doživelo največjo negativno rast
+* Več se odseli delovno aktivnega kot neaktivnega prebivalstva
+* Največ ljudi se odseli v Nemčijo in Avstrijo
+
+</font>
+
+
