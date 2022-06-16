@@ -1,0 +1,241 @@
+---
+title: "Analiza odseljevanja iz Slovenije"
+author: "Aljaž Kump"
+output:
+  html_document: default
+  pdf_document:
+    includes:
+      in_header: lib/styles.sty
+    latex_engine: xelatex
+runtime: shiny
+---
+
+```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
+
+# Uvoz vseh potrebnih knjižnic
+source("lib/libraries.r", encoding="UTF-8")
+```
+
+<font size = "4">
+Za projektno nalogo bom analiziral odseljevanje prebivalcev RS
+glede na leto, spol, starost, delovno aktivnost, izobrazbo in 
+državo prihodnjega prebivališča. Podatke sem dobil iz SI-STAT-a in Eurostat-a.
+</font>
+
+</br>
+
+# Obdelava, uvoz in čiščenje podatkov
+
+```{r uvoz, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+source("uvoz/uvoz.r", encoding="Windows-1250")
+```
+
+<font size = "4">
+Podatke o odseljevanju sem uvozil v obliki CSV formata. Vse tabele imajo za  glavno spremenljivko državo izseljevanja, ki so kombinirane z drugimi, kot so spol, starost, izobrazba in delovna aktivnost Vsi podatki so od leta 2011 do 2020.
+
+1. `Tabela_Tujina_Starost` - zajema kombinacije treh spremenljivk,
+  - `Starost` - mladi, zreli(neurejen faktor),
+  - `Leto ` - število,
+  - `Država ` - neurejen faktor
+
+2. `Tabela_Tujina_Izobrazba_Spol` - zajema kombinacije štirih spremenljivk,
+  - `Starost` - mladi, zreli(neurejen faktor),
+  - `Leto ` - število,
+  - `Država ` - neurejen faktor,
+  - `Izobrazba` - OS ali manj, SŠ, VŠ 
+  
+3. `Tabela_Tujina_Aktivnost_Spol` - zajema kombinacije štirih spremenljivk,
+  - `Aktivnost   ` - zaposlen, nezaposlen(neurejen faktor),
+  - `Spol` -  moški, ženski(neurejen faktor),
+  - `Leto` - število,
+  - `Država ` - neurejen faktor
+
+5. `Evropa` - zajema kombinacije dveh spremenljivk,
+  - `Država` - neurejen faktor
+  </font>
+
+</br>
+
+# Vizualizacija podatkov
+
+```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE,  results='hide'}
+source("vizualizacija/vizualizacija.r", encoding="Windows-1250")
+```
+
+## Splošna statistika
+
+</br>
+
+### Odseljevanje prebivalstva v evropske države
+
+```{r Line, fig.align='center', out.width="100%", out.height="75%"}
+print(Line)
+```
+
+<font size = "4">
+Prvi graf prikazuje v katere države so se prebivalci RS nasplošno izseljevali v zadnjem desetletju. Daleč največ se jih izseli v Avstrijo in Nemčijo, nato pa sledijo še Hrvaška, Švica, Italija in Združeno Kraljestvo. Opazi se tudi, da je bil višek izseljevanja leta 2017.
+</font>
+
+</br>
+
+### Odseljevanje mladega prebivalstva v evropske države
+
+```{r Slope1, fig.align='center', out.width="100%", out.height="75%"}
+print(Slope1)
+```
+
+<font size = "4">
+Naslednji graf prikazuje spremembo odseljenih v letih 2011 in 2020. Leta 2011 se je izselilo bistveno manj mladih kot leta 2020. Največjo razliko beleži Avstrija, v katero se je odselilo kar 150% več. Velik porast je imela tudi Švica iz 121 na 302. Pri ostalih spremembe niso bile tako velike, vendar je trend očiten, da se izseljuje vse več mladih.
+</font>
+
+</br>
+
+### Odseljevanje zrelega prebivalstva v evropske države
+
+```{r Slope2, fig.align='center', out.width="100%", out.height="75%"}
+print(Slope2)
+```
+
+<font size = "4">
+Pri zrelemu prebivalstu opazimo, da je trend drugačen kot pri mladih. Leta 2011 je daleč največji delež predstavljala Nemčija, ki je potem doživela največji upad. Avstriji se je delež najbolj povečal za 87% iz 264 na 494. Opazimo lahko tudi, da se več zrelih kot mladih odseljuje v južne države, kot so Srbija in BiH, ki sta obe doživeli upad.V splošnem je trend naraščajoč vednar ne tako kot pri mladih. 
+</font>
+
+</br>
+
+### Odseljevanje prebivalstva z osnovnošolsko izobrazbo v evropske države
+
+```{r Pie1, figures-side, fig.show="hold", out.width="50%"}
+print(Pie11)
+print(Pie12)
+```
+
+<font size = "4">
+Z nasledjimi tortnimi diagrami se prikazuje spremembo med letoma 2011 in 2020 glede na OS izobrazbo. Pri obeh letih močno prevladuje Nemčija. Nato sledi Avstrija. Najprej je bila na drugem mestu potem pa je leta 2020 z večino na prvem.
+Pri ostalih državah kot so Hrvaška v temno zeleni, BiH v oker, Italija v svetlo zeleni in Švici v svetlo vijolični je delež ostal približno enak. Najbolj se je zmanjšal Srbiji v temno vijolični.
+</font>
+
+</br>
+
+### Odseljevanje prebivalstva z srednješolsko izobrazbo v evropske države
+
+```{r Pie2, figures-side, fig.show="hold", out.width="50%"}
+print(Pie21)
+print(Pie22)
+```
+
+<font size = "4">
+Tako kot pri OS je leta 2011 prevladovala Nemčija. Leta 2020 je prišlo do velike spremembe. Avstrija prevladuje z zelo velikim deležom. Švici se je skoraj podvojil. Pri ostalih državah pa je prišlo do upada. Največji delež je izgubila Nemčija in BiH. Pri ostalih pa je ostalo približno enako.
+</font>
+
+### Odseljevanje prebivalstva z visokošolsko izobrazbo v evropske države
+
+```{r Pie3, figures-side, fig.show="hold", out.width="50%"}
+print(Pie31)
+print(Pie32)
+```
+
+<font size = "4">
+Pri višji izobrazbi so deleži v obeh letih veliko bolj enakomerno porazdeljeni po državah. tako kot pri zgornjih je 2011 prevladovala Nemčija, vendar se delež izseljenih v Avstrijo ni tako povečal. Zelo velike deleže so skozi leta ohranjale Hrvaška, Švica, Združeno Kraljestvo in Italija. Najbolj se je zmanjšal delež Srbiji in BiH.
+</font>
+
+</br>
+
+### Odseljevanje moškega prebivalstva v evropske države
+
+```{r Fill1, fig.align='center', out.width="100%", out.height="75%"}
+print(Fill1)
+```
+
+<font size = "4">
+Pri naslednjem diagramu želimo ugotoviti ali spol vpliva na izseljevanje v določene države. Pri moških skozi vsa leta prevladujeta Nemčija in Avstrija. Po večini ni prišlo do velikih sprememb. Največ je pridobila Švica, najbolj pa izgubila BiH. Pri ostalih državah pa je ostalo relativno enako. 
+</font>
+
+</br>
+
+### Odseljevanje ženskega prebivalstva v evropske države
+
+```{r Fill2, fig.align='center', out.width="100%", out.height="75%"}
+print(Fill2)
+```
+
+<font size = "4">
+Pri ženskah je tako kot pri moških največji delež predstavljata Nemčija in Avstrija. Hrvaška,Italija in Švica so ohranjale delež, ki jo podoben kot pri moških. Največja razlika med spoloma je, da se v BiH izseli veliko manj žensk kot moških. Država kjer prevladujejo ženske pa je Združeno Kraljestvo.
+</font>
+
+</br>
+
+### Odseljevanje delovnega aktivnega in neaktivnega prebivalstva
+
+```{r Aktivnost, fig.align='center', out.width="100%", out.height="75%"}
+print(Aktivnost)
+```
+
+<font size = "4">
+Zgornji histogram prikazuje koliko delovno aktivnih in delovno neaktivnih se izseljuje. Očitno se vidi, da je veliko več aktivnega. Tudi oba trenda sta si podobna. To pomeni da razlog za izseljevanje ni v tem ker je premalo delovnih mest, ampak da so v tujini bolje plačana oziroma je več priložnosti.
+</font>
+
+</br>
+
+</br>
+
+## Vizualizacija na zemljevidu
+
+</br>
+
+```{r map, fig.align='center', out.width="100%", out.height="75%"}
+print(Evropa)
+```
+
+</br>
+
+# Napredna analiza podatkov
+
+<font size = "4">
+
+Za dendogram sem uporabil tabelo, ki za vsako državo pove koliko se je izselilo moskih in žensk v zadnjih 10-ih letih skupaj. Dendogram je države razdelil v štiri skupine. Podatke bomo predstavili tudi grafično.
+
+</font>
+
+```{r analiza, echo=FALSE, message=FALSE, warning=FALSE,  results='hide'}
+source("analiza/analiza.r", encoding="Windows-1250")
+```
+
+</br>
+
+## Grafičen prikaz skupin
+
+```{r kol, fig.align='center', out.width="100%", out.height="75%"}
+print(kol)
+```
+
+<font size = "4">
+Zgoren graf prikazuje razdaljo pri združevanju skupin v odvisnosti od števila skupin. S pomočjo posebnih funkcij smo dobili možne skupine, ki so 2,3,4,5,9,11,13. Ker jih je dendogram prikazal 4 smo izbrali 4 kolena.
+</font>
+
+</br>
+
+```{r diag, fig.align='center', out.width="100%", out.height="75%"}
+print(diag)
+```
+
+<font size = "4">
+Na x koordinati je stevilo izseljenih moških in na y koordinati je število izseljenih žensk. Iz skupin vidimo, da se Slovenci po veliki večini izseljujejo v Avstrijo in Nemčijo. Nato sledina Švica in Hrvaška. Razvidn je tudi, da spol ne vpliva na izseljevanje z izjemo Srbije, BiH in Švice, kar smo ugotovili že pri zgornjih grafih. 
+</font>
+
+</br>
+
+# Zaključek
+
+</br>
+
+<font size = "4">
+Pri mladem prebivalstvu je prišlo do največjega porasta v zadnjih desetih letih
+Nemčija, Avstrija in Italija prevladujejo ne glede na izobrazbeno sestavo
+Velika Britanija in Švica v večini sprejemata visoko-izobraženo prebivalstvo
+Spol razen v BiH in Srbiji, kamor se odseli več moških ne vpliva na izbiro države odseljevanja
+Izseljuje se veliko več aktivnega kot neaktivnega prebivalstva
+</font>
+</br>
+</br>
+</br>
