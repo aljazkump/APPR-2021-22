@@ -17,6 +17,8 @@ library(gridExtra) # za prikaz vec grafov naenkrat
 library(reshape) # za poenostavljeno obdelavo histogramov
 library(rgdal) # za branje .SHP detotek
 library(maptools) # za risanje .SHP detotek
+library(ggalt)
+library(ggrepel)
 
 options(gsubfn.engine="R")
 
