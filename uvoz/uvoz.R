@@ -1,10 +1,10 @@
-library(tidyverse)
-
 # Change first row data as column names in R stack overflow
 header.true <- function(df) {
   names(df) <- as.character(unlist(df[1,]))
   df[-1,]
 }
+
+# ---------------------------------------------------------------------------- # 
 
 Tujina_Starost = read.csv(
   file = 'Podatki/Tujina_Starost.csv',
@@ -20,8 +20,9 @@ Tabela_Tujina_Starost = pivot_longer(
   Tujina_Starost1,
   cols = colnames(Tujina_Starost1)[-1],
   names_to = "Leto.Starost",
-  values_to = "Stevilo"
-) %>% separate(
+  values_to = "Stevilo") %>%
+  filter(!grepl("65 +", Leto.Starost)) %>%
+  separate(
   col = Leto.Starost,
   into = c("Leto", "Starost"),
   sep = " "
@@ -29,7 +30,6 @@ Tabela_Tujina_Starost = pivot_longer(
 
 Tabela_Tujina_Starost$`Starost`[Tabela_Tujina_Starost$`Starost` %in% c("0-14","15-19", "20-24", "25-29", "30-34")] = "Mladi"
 Tabela_Tujina_Starost$`Starost`[Tabela_Tujina_Starost$`Starost` %in% c("35-39", "40-44", "45-49", "50-54", "55-59", "60-64")] = "Zreli"
-Tabela_Tujina_Starost$`Starost`[Tabela_Tujina_Starost$`Starost` %in% c("65")] = "Stari"
 
 colnames(Tabela_Tujina_Starost)[1] = "Drzava"
 
@@ -45,8 +45,7 @@ Tabela_Tujina_Starost = Tabela_Tujina_Starost %>%
 Tujina_Izobrazba_Spol = read.csv(
   file = "Podatki/Tujina_Izobrazba_Spol.csv",
   header = FALSE,
-  skip =  1,
-  locale = locale(encoding = "Windows-1250")
+  skip =  1
 )
 
 Tujina_Izobrazba_Spol[2:33, 2] = sub("\\....", "", Tujina_Izobrazba_Spol[2:33, 2])
@@ -59,11 +58,14 @@ Tabela1 = pivot_longer(
   values_to = "Število"
 ) %>% separate(
   col = Leto.Drzavljani.Drzava.Izobrazba,
-  into = c("Leto","Drzavljani","Drzava","Izobrazba"),
-  sep = " "
-)
+  into = c("Leto","Izobrazba"),
+  sep = " RS "
+) %>% separate(
+  col = Leto,
+  into = c("Leto","Y"),
+  sep = " ")
 
-Tabela_Tujina_Izobrazba_Spol = Tabela1[, -which(names(Tabela1) %in% c("Drzavljani", "Drzava"))]
+Tabela_Tujina_Izobrazba_Spol = Tabela1[, -which(names(Tabela1) %in% c("Y"))]
 colnames(Tabela_Tujina_Izobrazba_Spol)[1] = "Spol"
 colnames(Tabela_Tujina_Izobrazba_Spol)[2] = "Drzava"
 colnames(Tabela_Tujina_Izobrazba_Spol)[5] = "Stevilo"
@@ -76,8 +78,7 @@ Tabela_Tujina_Izobrazba_Spol$Leto = as.numeric(Tabela_Tujina_Izobrazba_Spol$Leto
 Tujina_Aktivnost_Spol = read.csv(
   file = "Podatki/Tujina_Aktivnost_Spol.csv",
   header = FALSE,
-  skip = 1,
-  locale = locale(encoding = "Windows-1250")
+  skip = 1
 )
 
 Tujina_Aktivnost_Spol[2:33, 2] = sub("\\....", "", Tujina_Aktivnost_Spol[2:33, 2])
@@ -90,7 +91,7 @@ Tabela2 = pivot_longer(
   values_to = "Število"
 ) %>% separate(
   col = Leto.Drzavljani.Drzava.Izobrazba,
-  into = c("Leto","Drzavljani","Drzava","Izobrazba"),
+  into = c("Leto","Drzavljani","Drzava","Aktivnost"),
   sep = " "
 )
 
@@ -101,4 +102,15 @@ colnames(Tabela_Tujina_Aktivnost_Spol)[5] = "Stevilo"
 
 Tabela_Tujina_Aktivnost_Spol$Stevilo = as.numeric(Tabela_Tujina_Aktivnost_Spol$Stevilo)
 Tabela_Tujina_Aktivnost_Spol$Leto = as.numeric(Tabela_Tujina_Aktivnost_Spol$Leto)
+
+# ---------------------------------------------------------------------------- #  
+
+Evropa <- Tabela_Tujina_Aktivnost_Spol %>% group_by(Drzava) %>% summarise(Stevilo = sum(Stevilo)) %>% filter(Drzava != "Ruska federacija")
+Countries <- c("Austria", "Bulgaria", "Bosnia and Herzegovina", "Montenegro", "France", "Croatia", "Italy", "Kosovo", "Germany", "North Macedonia", "Slovakia", "Serbia", "Switzerland", "Ukraine", "Great Britain")
+Evropa["region"] = Countries
+
+Evropa <- left_join(Evropa, map_data("world")) %>% filter(!is.na(Stevilo))
+
+
+
 
